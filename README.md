@@ -1,5 +1,5 @@
 # Tebengin 
-> by RPAL-RPUL
+> by RPAL RPUL
 - 2006485245 - Adnan Mukhtar
 - 2006473421 - Mohammad Rizky Chairul Azizi
 - 2006525330 - Ridjky Tegar Perkasa
