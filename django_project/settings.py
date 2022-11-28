@@ -43,12 +43,12 @@ if not PRODUCTION:
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.staticfiles',  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',  
     'main',
 ]
 
@@ -140,15 +140,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 # This is the directory for storing `collectstatic` results.
 # This shouldn't be included in your Git repository.
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 # You can use this directory to store project-wide static files.
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 # Make sure the directories exist to prevent errors when doing `collectstatic`.
 # for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
