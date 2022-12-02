@@ -1,0 +1,160 @@
+div p input a {
+  font-family: "Mulish";
+}
+
+body {
+  background: linear-gradient(
+    259.72deg,
+    #8451e8 -2.61%,
+    #e488d1 54.64%,
+    #ff6782 102.08%
+  );
+}
+
+.login-form {
+  margin: 7rem 0;
+  padding: 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0px 4px 40px #9e4373;
+  border-radius: 20px;
+  background: #383838;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic;
+  margin-top: 1rem;
+  color: rgb(163, 124, 255);
+}
+
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-content h2 {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+
+form {
+  width: 360px;
+}
+
+.right-content .input-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 25px 0;
+  padding: 5px 0;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.i {
+  color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-wrapper > div {
+  position: relative;
+  height: 45px;
+}
+
+.input-wrapper > div > label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.input-wrapper > div > input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+input + label {
+  pointer-events: none;
+}
+
+input:focus + label,
+input + label.focus {
+  font-size: 1em;
+  font-weight: 400;
+  transform: translateY(-2.5em);
+}
+
+p {
+  color: #999;
+}
+
+a {
+  text-decoration: none;
+  color: #9f7aea;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #9162ee;
+}
+
+@media screen and (max-width: 1000px) {
+  form {
+    width: 290px;
+  }
+
+  .right-content h2 {
+    font-size: 2rem;
+    margin: 8px 0;
+  }
+
+  .doctor-img {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .login-form {
+    grid-template-columns: 1fr;
+  }
+
+  .left-content {
+    display: none;
+  }
+
+  .right-content {
+    justify-content: center;
+  }
+}

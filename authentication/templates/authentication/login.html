@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'authentication/css/login.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/registerUser.css' %}" />
+<script src="{% static 'authentication/js/signup' %}"></script>
+{% endblock meta %}
+
+<title>Login</title>
+
+{% block content %}
+<body>
+  <div class="container">
+    <div class="login-form">
+      <div class="left-content">
+        <img 
+          src="{% static 'authentication/images/icons/profile.svg' %}"
+          class="doctor-img" 
+          alt="login image"/>
+        <p class="quote">
+          "Mau Nebeng"
+          <br>
+          - AAAA
+        </p>
+      </div>
+      <div class="right-content">
+        <form method="POST" class="form-signup" action="{% url 'authentication:login' %}">
+          {% csrf_token %}
+          <h1 class="form-title"</h1>
+        {% csrf_token %}
+        <h2>Login here!</h2>
+        <div class="flexing">
+          <div class="form-left">
+            <br>
+            <div class="user-box">
+              <input 
+              type="text"
+              class="form-control" 
+              id= "username"
+              placeholder="username"
+              name="username"
+              value=""
+              required>
+              <label for="username">Username</label>
+            </div>
+          <br>
+        <div class="user-box">
+          <input 
+          type="password" 
+          class="form-control" 
+          id="floatingPassword" 
+          placeholder="password"
+          name="password"
+          value=""
+          required>
+          <label for="floatingPassword">Password</label>
+        </div>
+          </div>
+        </div>
+        <p class="mb-5" id="error" style="color:red"></p>
+        <div class="d-grid">
+          <input 
+            class="btn btn-primary" 
+            type="submit"
+            value="Login" 
+            style="background-color: #9f7aea">
+          <p style="font-size: 1rem; margin-top: .5rem;">
+            Don't have an account?
+            <a href="{% url 'authentication:register' %}">Register here</a>
+          </p>
+        </div>
+      </form>      
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock content %}
