@@ -12,6 +12,7 @@ class Pengguna(PolymorphicModel):
     name = models.CharField(max_length=100)
     distance_from_campus = models.IntegerField(blank=True, null=True, default=0)
     destination = models.CharField(max_length=100, blank=True, null=True,default="")
+    USERNAME_FIELD = 'username'
     # rating = models.IntegerField(blank=True, null=True)
     # rating ntar diambil dari class rating
     
@@ -30,7 +31,7 @@ class Driver(Pengguna):
 class Customer(Pengguna):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     images = models.ImageField(upload_to='images/customer/', default='images/default.png')
-    pass
+
     
     
     
