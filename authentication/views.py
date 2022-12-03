@@ -91,7 +91,7 @@ def sign_in(request):
 
     return render(request, 'authentication/login.html')
 
-
+@csrf_exempt
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)

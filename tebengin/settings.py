@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'polymorphic',
     'authentication',
     'main',
-    'dashboard_customer'
+    'dashboard_customer',
     'dashboard_driver'
 ]
 
