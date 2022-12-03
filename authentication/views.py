@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from authentication.forms import ChoiceRoleForm, CustomerRoleForm, DriverRoleForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Driver, Customer
+from django.views.decorators.csrf import csrf_exempt
 
 def register(request):
     formulir = ChoiceRoleForm()
@@ -71,6 +72,7 @@ def register_customer(request):
             return redirect('/authentication/login/')
 
 
+@csrf_exempt
 def sign_in(request):
 
     if request.method == 'POST':
