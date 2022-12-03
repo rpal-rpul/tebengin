@@ -1,5 +1,5 @@
 from django.db import models
-from authentication.models import Driver
+from authentication.models import Driver, Customer
 from django.utils.translation import gettext_lazy as _
 
 
@@ -19,6 +19,7 @@ class Order(models.Model):
     fee = models.DecimalField(max_digits=30, decimal_places=2)
     status = models.CharField(max_length=8, choices=OrderStatus.choices, default=OrderStatus.PENDING)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
 class DashboardDriver(models.Model):
