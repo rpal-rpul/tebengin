@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'authentication',
     'main',
     'dashboard_customer'
+    'dashboard_driver'
 ]
 
 MIDDLEWARE = [

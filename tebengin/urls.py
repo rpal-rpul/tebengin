@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 import authentication.urls as authentication
 import dashboard_customer.urls as dashboard_customer
+import dashboard_driver.urls as dashboard_driver
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('authentication/', include(authentication)),
-    path('dashboard-customer/', include(dashboard_customer))
+    path('dashboard-customer/', include(dashboard_customer)),
+    path('dashboard-driver/', include(dashboard_driver))
 ]
