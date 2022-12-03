@@ -1,4 +1,5 @@
 from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from authentication.models import Driver
 from dashboard_driver.forms import AddAvailableTimeForm
@@ -38,4 +39,4 @@ def getDriverOrder(request):
         "history_order": list(dashboard_driver.order.filter(status=OrderStatus.FINISHED)),
     }
 
-    return JsonResponse(value, status=200)
+    return render(request, "dashboard_driver/index.html", value)
