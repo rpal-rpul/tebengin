@@ -9,13 +9,13 @@ from dashboard_driver.models import DashboardDriver, OrderStatus
 @csrf_exempt
 def addAvailableTime(request):
     user = request.user
-    print(user)
+
     if user.is_anonymous:
         return JsonResponse({"result": "Belum login"}, status=200)
     if request.method == 'POST':
         form = AddAvailableTimeForm(request.POST)
         driver = Driver.objects.get(user=user)
-        print(form.instance)
+
         if form.is_valid():
             form.save()
             driver.available_time.add(form.instance)
