@@ -4,8 +4,9 @@ from authentication.forms import ChoiceRoleForm, CustomerRoleForm, DriverRoleFor
 from django.contrib.auth import authenticate, login, logout
 from dashboard_driver.models import DashboardDriver
 from .models import Driver, Customer
+from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def register(request):
     formulir = ChoiceRoleForm()
     argument = {
@@ -16,7 +17,7 @@ def register(request):
     }
     return render(request, 'authentication/register.html', argument)
 
-
+@csrf_exempt
 def registerPenggunaRole(request, message="", role=None):
     try:
         Role = str(request.POST['Role'])
@@ -42,7 +43,7 @@ def registerPenggunaRole(request, message="", role=None):
     }
     return render(request, 'authentication/register.html', argument)
 
-
+@csrf_exempt
 def register_driver(request):
     form = DriverRoleForm(request.POST, request.FILES)
     if form.is_valid():
@@ -58,7 +59,7 @@ def register_driver(request):
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
 
-
+@csrf_exempt
 def register_customer(request):
     form = CustomerRoleForm(request.POST, request.FILES)
     if form.is_valid():
@@ -74,7 +75,7 @@ def register_customer(request):
 
             return redirect('/authentication/login/')
 
-
+@csrf_exempt
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -89,7 +90,7 @@ def sign_in(request):
 
     return render(request, 'authentication/login.html')
 
-
+@csrf_exempt
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
