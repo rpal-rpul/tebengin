@@ -1,0 +1,18 @@
+{% block content %}
+
+<h1>Dashboard Driver!</h1>
+
+<table>
+  <thead>
+    <th>pending_order</th>
+  </thead>
+  <tbody>
+  {% for entry in pending_order %}
+    <tr>
+      <td>{{entry.order_date}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
