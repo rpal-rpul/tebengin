@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'polymorphic',
     'authentication',
     'main',
-    'dashboard_driver'
+    'dashboard_driver',
+    'booking_driver'
 ]
 
 MIDDLEWARE = [
