@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from dashboard_driver.models import DashboardDriver
 from .models import Driver, Customer
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def register(request):
@@ -75,7 +76,7 @@ def register_customer(request):
 
             return redirect('/authentication/login/')
 
-@csrf_exempt
+
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -90,7 +91,7 @@ def sign_in(request):
 
     return render(request, 'authentication/login.html')
 
-@csrf_exempt
+
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
