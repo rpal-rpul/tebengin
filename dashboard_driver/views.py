@@ -13,9 +13,6 @@ from django.forms.models import model_to_dict
 def addAvailableTime(request):
     user = request.user
 
-    if user.is_anonymous:
-        return JsonResponse({"failed": "Belum login"}, status=200)
-
     if request.method == 'POST':
         form = AddAvailableTimeForm(request.POST)
         driver = Driver.objects.get(user=user)
@@ -24,7 +21,8 @@ def addAvailableTime(request):
             form.save()
             driver.available_time.add(form.instance)
             return JsonResponse(model_to_dict(form.instance), status=200, content_type="application/json")
-    return JsonResponse({"failed": "not post method"}, status=405)
+        return JsonResponse({"failed": "Failed to save available time"}, status=405)
+    return JsonResponse({"failed": "Not using POST method"}, status=405)
 
 
 @csrf_exempt
@@ -41,4 +39,4 @@ def getDriverOrder(request):
             "history_order": list(dashboard_driver.order.filter(status=OrderStatus.FINISHED)),
         }
         return render(request, "dashboard_driver/index.html", value)
-    return JsonResponse({"failed": "not get method"}, status=405)
+    return JsonResponse({"failed": "Not using GET method"}, status=405)
