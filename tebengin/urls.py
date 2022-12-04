@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 import authentication.urls as authentication
+import profilepage.urls as profilepage
 import dashboard_customer.urls as dashboard_customer
 import dashboard_driver.urls as dashboard_driver
 import respons_order.urls as respons_order
@@ -25,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('authentication/', include(authentication)),
+    path('profile/', include(profilepage)),
     path('dashboard-customer/', include(dashboard_customer)),
     path('dashboard-driver/', include(dashboard_driver)),
     path('respons-order/', include(respons_order)),

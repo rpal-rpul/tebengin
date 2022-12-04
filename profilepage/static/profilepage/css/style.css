@@ -1,0 +1,126 @@
+body {
+    background-color: #383838
+}
+
+.topdown {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: white
+}
+
+.leftright {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profilePic {
+    height: 4vw;
+    width: 4vw;
+    background-color: #bbb;
+    border-radius: 20%;
+    margin: 10px 15px 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 0.1vw;
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
+}
+
+.profile-container {
+    min-width: 10%;
+    display: block;
+}
+
+.data-container {
+    /* border-bottom: black solid 1px;
+    border-top: black solid 1px; */
+    /* width: 99%; */
+    background-color: #383838;
+    width: 99%;
+    padding: 10px 10px 10px 15px;
+    flex: 1;
+    /* Dropy Zhadow */
+    box-shadow: 8px 8px 20px #9e4373;
+    border-radius: 20px;
+    color: white;
+}
+
+.riwayat-container {
+    /* border-bottom: black solid 1px;
+    border-top: black solid 1px; */
+    /* width: 99%; */
+    width: 465px;
+    height: 135px;
+    padding: 20px 10px 10px 20px;
+    margin-bottom: 20px;
+    /* Dropy Zhadow */
+    box-shadow: 8px 8px 20px #E9D8FD;
+    border-radius: 20px;
+}
+
+.judulData {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.fontall {
+    font-family: "Mulish", sans-serif;
+}
+
+.flex-box {
+    display:flex;
+    justify-content:space-between;
+}
+
+.form-control {
+    border-radius: 6px;
+    margin-right: 35px;
+    font-size: 13px;
+    background: transparent;
+    color: black;
+    font-family: "mulishh", sans-serif;
+}
+
+.button {
+    background-color: #383838; /* Green */
+    border: 2px solid #E9D8FD;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+  }
+
+.button:hover {
+    background-color: white;
+    border: 2px solid #E9D8FD;
+    color: rgb(20, 20, 20);
+}
+
+#profil .form form, #readPost .form form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#riwayat .form form, #readPost .form form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profil .form form p {
+    padding-right: 10px;
+}
+
+#profileInProfil {
+    height: 7vw;
+    width: 7vw;
+}
