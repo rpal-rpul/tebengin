@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polymorphic',
     'authentication',
+    'profilepage',
     'main',
 ]
 
