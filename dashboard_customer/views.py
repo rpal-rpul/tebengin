@@ -6,6 +6,8 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from dashboard_driver.models import OrderStatus
+from authentication.models import Pengguna
+from django.core import serializers
 import json
 
 # Create your views here.
@@ -18,6 +20,7 @@ def add_review(request):
         id_driver = request.POST["id_driver"]
         if request.POST["isi"] == "":
             return JsonResponse({"error": "Tidak ada input diberikan"}, status=200)
+        message = request.POST["isi"]
         customer = User.objects.get(pk=id_customer)
         driver = User.objects.get(pk=id_driver)
         customer_login = User.objects.get(pk=request.user.id)
@@ -35,9 +38,17 @@ def get_review(request):
 def get_review_driver(request):
     if request.method == 'GET':
         driver_login = User.objects.get(pk=request.user.id)
-        
-        data = list(driver_login.review_set.all())
-        return JsonResponse(data, safe=False)
+        all_review = Review.objects.all()
+        print(request.user.id)
+        print(all_review)
+        review_driver = []
+        for i in all_review:
+            if i.driver == driver_login:
+                review_driver.append(i)
+        print(review_driver)
+
+        serialized_data = serializers.serialize('json', review_driver)
+        return JsonResponse(json.loads(serialized_data), safe = False)
 
 @csrf_exempt
 def getCustomerOrder(request):
