@@ -28,8 +28,6 @@ def bookingDriver(request):
 @csrf_exempt
 def create_order(request):
     customer = request.user # Customer sedang login
-    print(customer)
-    print(customer.id)
     if customer.is_anonymous:
         return JsonResponse({"result": "Belum login"}, status=200)
     if request.method == 'POST':
