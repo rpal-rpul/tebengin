@@ -16,15 +16,12 @@ def add_review(request):
     if request.method == 'POST':
         id_customer = request.POST["id_customer"]
         id_driver = request.POST["id_driver"]
-        message = request.POST["isi"]
-
+        if request.POST["isi"] == "":
+            return JsonResponse({"error": "Tidak ada input diberikan"}, status=200)
         customer = User.objects.get(pk=id_customer)
         driver = User.objects.get(pk=id_driver)
         customer_login = User.objects.get(pk=request.user.id)
 
-        print("ini driver", driver)
-        print("ini cust", customer_login)
-        # Create object
         Review.objects.create(message=message, driver=driver, customer=customer_login)
         return HttpResponse({})
         
