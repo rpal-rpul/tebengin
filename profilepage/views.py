@@ -17,9 +17,10 @@ def profile(request):
     if profile is None:
         profile = Pengguna.objects.filter(customer__user=current_user)[0]
         isdriver,iscustomer = False,True
-    
+    profile.is_authenticated = True
     context = {
-        'user': profile,
+        'user': current_user,
+        'profile': profile,
         'isdriver': isdriver,
         'iscustomer': iscustomer,
     }

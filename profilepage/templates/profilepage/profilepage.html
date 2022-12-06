@@ -17,7 +17,7 @@
         <div id="profil-pic" class="profile-container">
           <div class="profilePic" id="profileInProfil" style="background-color: {{user.profil_color}};">
             <div class="topdown" style="font-size: 4.5vw; color: black">
-              {{ user.user|make_list|first|upper }}
+              {{ profile.user|make_list|first|upper }}
             </div>
           </div>
         </div>
@@ -59,40 +59,40 @@
           </div>
           <div class="row mb-2" id='email-data'>
             <div class="col-4 md-2"> E-Mail </div>
-            <div class="col-8 md-2"> {{ user.email }} </div>
+            <div class="col-8 md-2"> {{ profile.email }} </div>
           </div>
           <div class="row mb-2" id='name-data'>
             <div class="col-4"> Name </div>
-            <div class="col-8"> {{ user.name }} </div>
+            <div class="col-8"> {{ profile.name }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Distance from Campus </div>
-            <div class="col-8"> {{ user.distance_from_campus }} </div>
+            <div class="col-8"> {{ profile.distance_from_campus }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Destination </div>
-            <div class="col-8"> {{ user.destination }} </div>
+            <div class="col-8"> {{ profile.destination }} </div>
           </div>
           {% if isdriver %}
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Available Time Begin </div>
-            <div class="col-8"> {{ user.available_time_begin }} </div>
+            <div class="col-8"> {{ profile.available_time_begin }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Available Time End </div>
-            <div class="col-8"> {{ user.available_time_end }} </div>
+            <div class="col-8"> {{ profile.available_time_end }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Phone Number </div>
-            <div class="col-8"> {{ user.phone_number }} </div>
+            <div class="col-8"> {{ profile.phone_number }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Fee per KM </div>
-            <div class="col-8"> {{ user.fee_per_km }} </div>
+            <div class="col-8"> {{ profile.fee_per_km }} </div>
           </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> License Plate </div>
-            <div class="col-8"> {{ user.license_plate }} </div>
+            <div class="col-8"> {{ profile.license_plate }} </div>
           </div>
           {% endif %}
         </div>
@@ -104,7 +104,7 @@
           </div>
           <div class="row mb-2">
             <div class="col-4"> Username </div>
-            <div class="col-8"> {{ user.user }} </div>
+            <div class="col-8"> {{ profile.user }} </div>
           </div>
           {% if isdriver %}
           <div class="row mb-2">
