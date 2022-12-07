@@ -19,6 +19,7 @@ import authentication.urls as authentication
 import dashboard_driver.urls as dashboard_driver
 import respons_order.urls as respons_order
 import booking_driver.urls as booking_driver
+import profilepage.urls as profilepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('dashboard-driver/', include(dashboard_driver)),
     path('respons-order/', include(respons_order)),
     path('booking-driver/', include(booking_driver))
+    path('profile/', include(profilepage)),
 ]
