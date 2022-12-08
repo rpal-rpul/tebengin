@@ -99,7 +99,44 @@
         <div class="sidebar-menu">
           <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            
+            {% if request.user.is_authenticated and is_driver %}
+              <li class="sidebar-item">
+                <a
+                  href="{% url 'dashboard_driver:addAvailableTime' %}"
+                  class="sidebar-link"
+                >
+                  <i class="bi bi-grid-fill"></i>
+                  <span>Add Available Time</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item has-sub">
+              <a href="#" class="sidebar-link">
+                <i class="bi bi-stack"></i>
+                <span>Dashboard</span>
+              </a>
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="component-alert.html">Pending</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-badge.html">Accepted</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Rejected</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Finished</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Review</a>
+                </li>
+              </ul>
+            </li>
+
+            {% endif %}
+
+            {% if not request.user.is_authenticated %}
             <li class="sidebar-item">
               <a
                 href="{% url 'authentication:register' %}"
@@ -119,63 +156,7 @@
                 <span>Login</span>
               </a>
             </li>
-
-            {% comment %} <li class="sidebar-item has-sub">
-              <a href="#" class="sidebar-link">
-                <i class="bi bi-stack"></i>
-                <span>Components</span>
-              </a>
-              <ul class="submenu">
-                <li class="submenu-item">
-                  <a href="component-alert.html">Alert</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-badge.html">Badge</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Breadcrumb</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-button.html">Button</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-card.html">Card</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-carousel.html">Carousel</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-collapse.html">Collapse</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-dropdown.html">Dropdown</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-list-group.html">List Group</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-modal.html">Modal</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-navs.html">Navs</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-pagination.html">Pagination</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-progress.html">Progress</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-spinner.html">Spinner</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-toasts.html">Toasts</a>
-                </li>
-                <li class="submenu-item">
-                  <a href="component-tooltip.html">Tooltip</a>
-                </li>
-              </ul>
-            </li> {% endcomment %}
+            {% endif %}
 
           </ul>
         </div>
@@ -196,19 +177,17 @@
             <img src="{% static 'assets/images/faces/1.jpg' %}" alt="Avatar" />
           </div>
           <div class="text">
-            <h6 class="user-dropdown-name">John Ducky</h6>
-            <p class="user-dropdown-status text-sm text-muted">Member</p>
+            <h6 class="user-dropdown-name">{{ request.user }}</h6>
           </div>
         </a>
         <ul
           class="dropdown-menu dropdown-menu-end shadow-lg"
           aria-labelledby="topbarUserDropdown"
         >
-          <li><a class="dropdown-item" href="#">My Account</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="{% url 'profilepage:profile-page' %}">Profile</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li>
-            <a class="dropdown-item" href="auth-login.html">Logout</a>
+            <a class="dropdown-item" href="{% url 'authentication:logout' %}">Logout</a>
           </li>
         </ul>
       </div>
