@@ -15,7 +15,7 @@ def register(request):
         'roleDriver': False,
         'roleCustomer': False
     }
-    return render(request, 'authentication/register.html', argument)
+    return render(request, 'authentication/registerRole.html', argument)
 
 @csrf_exempt
 def registerPenggunaRole(request, message="", role=None):

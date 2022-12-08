@@ -12,9 +12,10 @@ def profile(request):
     current_user = request.user
         
     # get current user's profile from polymorphic model
-    profile = Pengguna.objects.filter(driver__user=current_user)[0]
-    isdriver,iscustomer = True,False
-    if profile is None:
+    try:
+        profile = Pengguna.objects.filter(driver__user=current_user)[0]
+        isdriver,iscustomer = True,False
+    except:
         profile = Pengguna.objects.filter(customer__user=current_user)[0]
         isdriver,iscustomer = False,True
     profile.is_authenticated = True
@@ -69,4 +70,5 @@ def change_password(request):
 
     form = PasswordChangeForm(user=request.user)
     response = {'form': form}
+    print(response)
     return render(request, 'profilepage/change_password.html', response)
