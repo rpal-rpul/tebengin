@@ -121,3 +121,81 @@ body {
     height: 7vw;
     width: 7vw;
 }
+
+/* button */
+.button1, input[type=submit] {
+    display: inline-block;
+    padding:0.35em 1.2em;
+    border: 0.13em solid #FFFFFF;
+    margin: 0.5em 0.5em 1em 0;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight: bold;
+    font-family: "Mulish", sans-serif;
+    color:#FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    font-size: 2vw;
+    background-color: #6b46c1;
+}
+/* button */
+.button2, input[type=cancel] {
+    display: inline-block;
+    padding:0.35em 1.2em;
+    border: 0.13em solid #FFFFFF;
+    margin: 0.5em 0.5em 1em 0;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight: bold;
+    font-family: "Mulish", sans-serif;
+    color:#FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    font-size: 2vw;
+    background-color: #595d74;
+}
+/* button */
+.button3, input[type=cancel] {
+    display: inline-block;
+    padding:0.35em 1.2em;
+    border: 0.13em solid #FFFFFF;
+    margin: 0.5em 0.5em 1em 0;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight: bold;
+    font-family: "Mulish", sans-serif;
+    color:#FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    font-size: 2vw;
+    background-color: #5f6dc0;
+}
+.button1:hover, input[type=submit]:hover {
+    background-color: #ffffff;
+    border: 0.13em solid #ffffff;
+    color: #000000;
+}
+.button2:hover, input[type=cancel]:hover {
+    background-color: #b36464;
+    border: 0.13em solid #ca3d67;
+    color: #000000;
+}
+.button3:hover, input[type=cancel]:hover {
+    background-color: #FFFFFF;
+    border: 0.13em solid #9082cf;
+    color: #000000;
+}
+@media all and (max-width:30em){
+    .button1, input[type=submit] {
+        display: block;
+        margin: 0.4em auto;
+    }
+}
+.leftright {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

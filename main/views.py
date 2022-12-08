@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from authentication.models import Pengguna,Driver,Customer
+from authentication.models import Customer, Pengguna
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/authentication/login')
 def home(request):
     current_user = request.user
     is_driver = check_user_role(current_user)
-        # get current user's profile from polymorphic model
     try:
         profile = Pengguna.objects.filter(driver__user=current_user)[0]
     except:
