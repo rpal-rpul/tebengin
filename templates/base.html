@@ -176,7 +176,7 @@
           aria-expanded="false"
         >
           <div class="avatar avatar-md2">
-            <img src="{% static 'assets/images/faces/1.jpg' %}" alt="Avatar" />
+            <img src="{{profile.images.url}}" alt="Avatar" />
           </div>
           <div class="text">
             <h6 class="user-dropdown-name">{{ request.user }}</h6>

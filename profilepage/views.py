@@ -31,16 +31,7 @@ def profile(request):
 
 
 def update_data(request):
-    current_user = request.user
-
-    # get current user's profile from polymorphic model
-    profile = Pengguna.objects.filter(driver__user=current_user)[0]
-    
-    if profile is None:
-        profile = Pengguna.objects.filter(customer__user=current_user)[0]
-        
-    print(profile)
-    print(request.POST)
+    profile = get_profile(request)
 
     if request.POST.get('username') != '':
         name = request.POST.get('username')
@@ -55,11 +46,12 @@ def update_data(request):
         profile.phone_num = number
         
     profile.save()
-    # return HttpResponseRedirect('profilepage/profilepage.html')
+    
     return render(request, 'profilepage/profilepage.html', {'user': profile})
 
 @login_required(login_url='/accounts/login')
 def change_password(request):
+    profile = get_profile(request)
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
 
@@ -69,6 +61,14 @@ def change_password(request):
             return redirect('/profile')
 
     form = PasswordChangeForm(user=request.user)
-    response = {'form': form}
+    response = {'form': form, 'profile': profile}
     print(response)
     return render(request, 'profilepage/change_password.html', response)
+
+def get_profile(request):
+    current_user = request.user
+    try:
+        profile = Pengguna.objects.filter(driver__user=current_user)[0]
+    except:
+        profile = Pengguna.objects.filter(customer__user=current_user)[0]
+    return profile

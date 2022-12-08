@@ -1,11 +1,17 @@
 from django.shortcuts import render
-from authentication.models import Customer
+from authentication.models import Pengguna,Driver,Customer
 
 def home(request):
-    profile = request.user
-    is_driver = check_user_role(profile)
+    current_user = request.user
+    is_driver = check_user_role(current_user)
+        # get current user's profile from polymorphic model
+    try:
+        profile = Pengguna.objects.filter(driver__user=current_user)[0]
+    except:
+        profile = Pengguna.objects.filter(customer__user=current_user)[0]
     context = {
-        'user': profile,
+        'user': current_user,
+        'profile': profile,
         'is_driver': is_driver
     }
     
