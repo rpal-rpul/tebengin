@@ -12,6 +12,8 @@ from django.forms.models import model_to_dict
 @login_required(login_url='/authentication/login/')
 def addAvailableTime(request):
     user = request.user
+    if request.method == 'GET':
+        return render(request, 'dashboard_driver/add_available_time.html', status=200)
 
     if request.method == 'POST':
         form = AddAvailableTimeForm(request.POST)
@@ -22,7 +24,8 @@ def addAvailableTime(request):
             driver.available_time.add(form.instance)
             return JsonResponse(model_to_dict(form.instance), status=200, content_type="application/json")
         return JsonResponse({"failed": "Failed to save available time"}, status=405)
-    return JsonResponse({"failed": "Not using POST method"}, status=405)
+        
+    return JsonResponse({"failed": "Not using GET or POST method"}, status=405)
 
 
 @csrf_exempt
