@@ -17,10 +17,7 @@ body {
 }
 
 .profilePic {
-    height: 4vw;
-    width: 4vw;
-    background-color: #bbb;
-    border-radius: 20%;
+    border-radius: 50%;
     margin: 10px 15px 10px 10px;
     margin-left: auto;
     margin-right: auto;

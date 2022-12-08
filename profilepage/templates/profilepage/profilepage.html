@@ -15,10 +15,8 @@
       <div class="topdown" style="margin-bottom: 30px;">
         <p style="font-size:35px;font-weight:bold; margin-top:30px;"> Profile </p>
         <div id="profil-pic" class="profile-container">
-          <div class="profilePic" id="profileInProfil" style="background-color: {{user.profil_color}};">
-            <div class="topdown" style="font-size: 4.5vw; color: black">
-              {{ profile.user|make_list|first|upper }}
-            </div>
+          <div class="profilePic" id="profileInProfil">
+            <img class="rounded-circle" src={{profile.images.url}} alt="profile picture" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
         </div>
       </div>
