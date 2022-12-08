@@ -27,8 +27,8 @@ urlpatterns = [
     path('', include('main.urls')),
     path('authentication/', include(authentication)),
     path('profile/', include(profilepage)),
-    path('dashboard-customer/', include(dashboard_customer)),
     path('dashboard-driver/', include(dashboard_driver)),
+    path('dashboard-customer/', include(dashboard_customer)),
     path('respons-order/', include(respons_order)),
     path('booking-driver/', include(booking_driver))
 ]

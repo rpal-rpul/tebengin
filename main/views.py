@@ -1,4 +1,8 @@
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'home.html')
+    profile = request.user
+    context = {
+        'user': profile,
+    }
+    return render(request, 'home.html', context)
