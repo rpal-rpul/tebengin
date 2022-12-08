@@ -6,3 +6,6 @@ def home(request):
         'user': profile,
     }
     return render(request, 'home.html', context)
+
+def template_example(request):
+    return render(request, 'template_example.html', {})

@@ -27,6 +27,6 @@ urlpatterns = [
     path('authentication/', include(authentication)),
     path('dashboard-driver/', include(dashboard_driver)),
     path('respons-order/', include(respons_order)),
-    path('booking-driver/', include(booking_driver))
+    path('booking-driver/', include(booking_driver)),
     path('profile/', include(profilepage)),
 ]
