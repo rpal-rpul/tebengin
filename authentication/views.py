@@ -17,6 +17,7 @@ def register(request):
         'roleCustomer': False
     }
     return render(request, 'authentication/registerRole.html', argument)
+    return render(request, 'authentication/register.html', argument)
 
 @csrf_exempt
 def registerPenggunaRole(request, message="", role=None):
@@ -79,6 +80,8 @@ def register_customer(request):
     return render(request, 'authentication/register.html', {'form': form})
 
 
+
+@csrf_exempt
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -95,4 +98,8 @@ def sign_in(request):
 
 def logout_user(request):
     logout(request)
+@csrf_exempt
+def logout_user(request):
+    if request.user.is_authenticated:
+        logout(request)
     return redirect('/')

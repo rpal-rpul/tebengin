@@ -99,67 +99,76 @@
               ></a>
             </div>
           </div>
-          <div class="sidebar-menu">
-            <ul class="menu">
-              <li class="sidebar-title">Menu</li>
-              {% if request.user.is_authenticated and is_driver %}
-              <li class="sidebar-item">
-                <a
-                  href="{% url 'dashboard_driver:addAvailableTime' %}"
-                  class="sidebar-link"
-                >
-                  <i class="bi bi-grid-fill"></i>
-                  <span>Add Available Time</span>
-                </a>
-              </li>
+        </div>
+        <div class="sidebar-menu">
+          <ul class="menu">
+            <li class="sidebar-title">Menu</li>
+            {% if request.user.is_authenticated and is_driver %}
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link"
+                href="{% url 'dashboard_driver:addAvailableTime' %}"
+              >
+                <i class="bi bi-grid-fill"></i>
+                <span>Add Available Time</span>
+              </a>
+            </li>
 
-              <li class="sidebar-item has-sub">
-                <a href="#" class="sidebar-link">
-                  <i class="bi bi-stack"></i>
-                  <span>Dashboard</span>
-                </a>
-                <ul class="submenu">
-                  <li class="submenu-item">
-                    <a href="component-alert.html">Pending</a>
-                  </li>
-                  <li class="submenu-item">
-                    <a href="component-badge.html">Accepted</a>
-                  </li>
-                  <li class="submenu-item">
-                    <a href="component-breadcrumb.html">Rejected</a>
-                  </li>
-                  <li class="submenu-item">
-                    <a href="component-breadcrumb.html">Finished</a>
-                  </li>
-                  <li class="submenu-item">
-                    <a href="component-breadcrumb.html">Review</a>
-                  </li>
-                </ul>
-              </li>
-              {% endif %} {% if not request.user.is_authenticated %}
-              <li class="sidebar-item">
-                <a
-                  href="{% url 'authentication:register' %}"
-                  class="sidebar-link"
-                >
-                  <i class="bi bi-grid-fill"></i>
-                  <span>Sign Up</span>
-                </a>
-              </li>
+            -
+            <li class="sidebar-item has-sub">
+              <a class="sidebar-link" href="#">
+                <i class="bi bi-stack"></i>
+                <span>Dashboard</span>
+              </a>
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="component-alert.html">Pending</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-badge.html">Accepted</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Rejected</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Finished</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="component-breadcrumb.html">Review</a>
+                </li>
+              </ul>
+            </li>
 
-              <li class="sidebar-item">
-                <a href="{% url 'authentication:login' %}" class="sidebar-link">
-                  <i class="bi bi-grid-fill"></i>
-                  <span>Login</span>
-                </a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+            {% endif %} {% if not request.user.is_authenticated %}
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link"
+                href="{% url 'authentication:register' %}"
+              >
+                <i class="bi bi-grid-fill"></i>
+                <span>Sign Up</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'authentication:login' %}">
+                <i class="bi bi-grid-fill"></i>
+                <span>Login</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
+    </div>
+    <div id="main">
+      <header class="mb-3 d-flex justify-content-between">
+        <a class="burger-btn d-flex flex-start d-xl-none" href="#">
+          <i class="bi bi-justify fs-3"></i>
+        </a>
 
-      <div id="main">
+        <a class="burger-btn d-flex flex-start d-xl fs-3" href="#"> </a>
+
         {% if request.user.is_authenticated %}
         <div class="dropdown d-flex flex-end">
           <a
@@ -170,14 +179,10 @@
             id="topbarUserDropdown"
           >
             <div class="avatar avatar-md2">
-              {% if profile.images %}
-              <img src="{{profile.images.url}}" alt="Avatar" />
-              {%else%}
               <img
-                src="{% static 'assets/images/faces/1.jpg' %}"
                 alt="Avatar"
+                src="{% static 'assets/images/faces/1.jpg' %}"
               />
-              {%endif%}
             </div>
             <div class="text">
               <h6 class="user-dropdown-name">{{ request.user }}</h6>
@@ -194,7 +199,9 @@
                 >Profile</a
               >
             </li>
-            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
             <li>
               <a class="dropdown-item" href="{% url 'authentication:logout' %}"
                 >Logout</a
@@ -202,38 +209,32 @@
             </li>
           </ul>
         </div>
-
-        <header class="mb-3">
-          <a href="#" class="burger-btn d-block d-xl-none">
-            <i class="bi bi-justify fs-3"></i>
-          </a>
-        </header>
         {% endif %}
-        <!--Add your content here-->
-        {% block content %} {% endblock content %}
-        <footer>
-          <div class="footer clearfix mb-0 text-muted">
-            <div class="float-start">
-              <p>Tebeng.in</p>
-            </div>
-            <div class="float-end">
-              <p>
-                by
-                <a href="https://github.com/rpal-rpul/">RPAL RPUL </a>
-              </p>
-            </div>
+      </header>
+      <!--Add your content here-->
+      {% block content %} {% endblock content %}
+      <footer>
+        <div class="footer clearfix mb-0 text-muted">
+          <div class="float-start">
+            <p>Tebeng.in</p>
           </div>
-        </footer>
-      </div>
+          <div class="float-end">
+            <p>
+              by
+              <a href="https://github.com/rpal-rpul/">RPAL RPUL </a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
-
-    <script src="{% static 'assets/js/initTheme.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
-    <script src="{% static 'assets/js/app.js' %}"></script>
-
-    <!-- Need: Apexcharts -->
-    <script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
-    <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
-    {% block script %} {% endblock script %}
   </div>
+
+  <script src="{% static 'assets/js/initTheme.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+  <script src="{% static 'assets/js/app.js' %}"></script>
+
+  <!-- Need: Apexcharts -->
+  <script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
+  {% block script %} {% endblock script %}
 </html>

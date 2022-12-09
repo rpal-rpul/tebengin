@@ -6,6 +6,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.idea
 
 # Python cache files
 __pycache__/
@@ -79,5 +80,4 @@ $RECYCLE.BIN/
 
 #Ignore files migrations
 /authentication/migrations/*.py
-/profilepage/migrations/*.py
 /dashboard_driver/migrations/*.py

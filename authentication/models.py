@@ -9,6 +9,8 @@ class Pengguna(PolymorphicModel):
     distance_from_campus = models.IntegerField(blank=True, null=True, default=0)
     destination = models.CharField(max_length=100, blank=True, null=True, default="")
     USERNAME_FIELD = 'username'
+    # rating = models.IntegerField(blank=True, null=True)
+    # rating ntar diambil dari class rating
 
 
 class AvailableDateTime(models.Model):
@@ -23,6 +25,8 @@ class Driver(Pengguna):
     fee_per_km = models.IntegerField(blank=True, null=True)
     license_plate = models.CharField(max_length=20, blank=True, null=True)
     images = models.ImageField(upload_to='images/driver/', default='images/default.png')
+    # review = models.CharField(max_length=100, blank=True, null=True)
+    # review ntar diambil dari class review
 
 
 class Customer(Pengguna):
