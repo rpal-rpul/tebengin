@@ -13,49 +13,6 @@
 <body>
   <div class="container d-flex justify-content-center">
     <div class="sign-up show">    
-      {% if formrole %}
-      <form method="POST" action="{% url 'authentication:registerRole' %}">
-        {% csrf_token %}
-        <div class="choiceRoleForm">
-          <h2>Choose Role!</h2>
-            <ul class="row justify-content-between" id="id_Role">
-              <div class="col checkboxgroup">
-                <label for="id_Role_0">
-                  <div class="menu-tara">
-                    <img src="{% static 'authentication/images/icons/admin.svg' %}" alt="">
-                    <p>Driver</p>
-                    <div style="height: 30px;"></div>
-                  </div>
-                </label>
-                <input type="radio" name="Role" value="Driver" required="" id="id_Role_0">
-              </div>
-              <div class="col checkboxgroup">
-                <label for="id_Role_1">
-                  <div class="menu-tara">
-                    <img src="{% static 'authentication/images/icons/profile.svg' %}" alt="">
-                    <p>Customer</p>
-                    <div style="height: 30px;"></div>
-                  </div>
-                </label>
-                <input type="radio" name="Role" value="Customer" required="" id="id_Role_1">
-              </div>
-            </ul>
-        </div>
-        <p class="mb-5" id="error" style="color:red"></p>
-        <div class="d-grid">
-          <input 
-            class="btn btn-primary" 
-            type="submit"
-            value="Next" 
-            style="background-color: #9f7aea">
-          <p style="font-size: 1rem; margin-top: 1rem;">
-            Already have an account?
-            <a href="{% url 'authentication:login' %}">Login here</a>
-          </p>
-        </div>
-      </form>
-      {% endif %}
-
       {% if roleDriver %}
       <form method="POST"  class="form-signup" action="{% url 'authentication:registerDriver' %}" enctype="multipart/form-data">
         {% csrf_token %}

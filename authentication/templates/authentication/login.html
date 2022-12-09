@@ -15,22 +15,27 @@
     <div class="login-form">
       <div class="left-content">
         <img 
-          src="{% static 'authentication/images/icons/profile.svg' %}"
+          src="{% static 'assets/images/logo/favicon.svg' %}"
           class="doctor-img" 
           alt="login image"/>
         <p class="quote">
           "Mau Nebeng"
           <br>
-          - AAAA
+          -
+          <br> 
+          "Mau Tebengin"
         </p>
       </div>
       <div class="right-content">
         <form method="POST" class="form-signup" action="{% url 'authentication:login' %}">
-          {% csrf_token %}
-          <h1 class="form-title"</h1>
         {% csrf_token %}
         <h2>Login here!</h2>
         <div class="flexing">
+          {% if message != None %}
+            <div class="alert alert-danger text-center" role="alert">
+              {{ message }}
+            </div>
+          {% endif %}
           <div class="form-left">
             <br>
             <div class="user-box">
@@ -38,27 +43,24 @@
               type="text"
               class="form-control" 
               id= "username"
-              placeholder="username"
               name="username"
               value=""
               required>
               <label for="username">Username</label>
             </div>
           <br>
-        <div class="user-box">
-          <input 
-          type="password" 
-          class="form-control" 
-          id="floatingPassword" 
-          placeholder="password"
-          name="password"
-          value=""
-          required>
-          <label for="floatingPassword">Password</label>
-        </div>
+          <div class="user-box">
+            <input 
+            type="password" 
+            class="form-control" 
+            id="floatingPassword" 
+            name="password"
+            value=""
+            required>
+            <label for="floatingPassword">Password</label>
           </div>
         </div>
-        <p class="mb-5" id="error" style="color:red"></p>
+        </div>
         <div class="d-grid">
           <input 
             class="btn btn-primary" 
