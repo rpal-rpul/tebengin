@@ -80,4 +80,5 @@ $RECYCLE.BIN/
 
 #Ignore files migrations
 /authentication/migrations/*.py
+/profilepage/migrations/*.py
 /dashboard_driver/migrations/*.py

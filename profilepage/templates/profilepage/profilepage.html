@@ -5,20 +5,29 @@
     <title>Profile</title>    
     <link rel="stylesheet" href="{% static 'profilepage/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'authentication/css/registerUser.css'%}">
-    <script src="{% static 'profilepage/js/update.js' %}"></script>
+    <script src="{% static 'profilepage/js/notification.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock meta %}
 
 {% block content %}
   <div class="container" style="margin-bottom:150px;">
+    {% if messages %}
+    <ul class="alert alert-success" role="alert" style="list-style-type: none; margin-top: 30px; margin-bottom: 30px;">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div id="profil">
       <div class="topdown" style="margin-bottom: 30px;">
         <p style="font-size:35px;font-weight:bold; margin-top:30px;"> Profile </p>
         <div id="profil-pic" class="profile-container">
-          <div class="profilePic" id="profileInProfil" style="background-color: {{user.profil_color}};">
-            <div class="topdown" style="font-size: 4.5vw; color: black">
-              {{ profile.user|make_list|first|upper }}
-            </div>
+          <div class="profilePic" id="profileInProfil">
+            {% if profile.images %}
+            <img class="rounded-circle" src={{profile.images.url}} alt="profile picture" style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+            <img class="rounded-circle" src="{% static 'base/image/default.png' %}" alt="profile picture" style="width: 100%; height: 100%; object-fit: cover;">
+            {% endif %}
           </div>
         </div>
       </div>
@@ -26,36 +35,7 @@
         <div class="data-container col-sm">
           <div class="flex-box">
             <p class="judulData fontall"> User Data </p>
-            <button id="edit-button" type="button" class="button" style="justify-content: flex-end;" data-bs-toggle="modal" data-bs-target="#data"> Edit </button>
-            <div class="modal fade" id="data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Change Data </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body" style="color: black;">
-                    <!-- Ganti data diri -->
-                    <form id="user-update" method="POST">
-                      {% csrf_token %}
-                      <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input class="form-control" type="text" id="name">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">E-Mail</label>
-                        <input class="form-control" type="text" id="email">
-                      </div> 
-                      <div class="mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <input class="form-control" type="text" id="number">
-                      </div> 
-                      <button type="button" class="button button1" id="save-button" data-bs-dismiss="modal" aria-label="Close">Save</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <a type="button" class="button" style="justify-content: flex-end; text-decoration: none;" href="{% url 'profilepage:edit-data'%}"> Edit </a>
           </div>
           <div class="row mb-2" id='email-data'>
             <div class="col-4 md-2"> E-Mail </div>
@@ -74,14 +54,6 @@
             <div class="col-8"> {{ profile.destination }} </div>
           </div>
           {% if isdriver %}
-          <div class="row mb-2" id='number-data'>
-            <div class="col-4"> Available Time Begin </div>
-            <div class="col-8"> {{ profile.available_time_begin }} </div>
-          </div>
-          <div class="row mb-2" id='number-data'>
-            <div class="col-4"> Available Time End </div>
-            <div class="col-8"> {{ profile.available_time_end }} </div>
-          </div>
           <div class="row mb-2" id='number-data'>
             <div class="col-4"> Phone Number </div>
             <div class="col-8"> {{ profile.phone_number }} </div>
@@ -126,5 +98,6 @@
       </div>
     </div>
   </div>
-
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 {% endblock content %}
