@@ -98,7 +98,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 
-    # comment out for deployment
+    # uncomment for deployment
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('PGDATABASE'),
