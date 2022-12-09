@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import authentication.urls as authentication
 import dashboard_driver.urls as dashboard_driver
 import respons_order.urls as respons_order
@@ -33,8 +32,6 @@ urlpatterns = [
     path('booking-driver/', include(booking_driver)),
     path('profile/', include(profilepage)),
 ]
-# Serving the media files in development mode
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
+  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
