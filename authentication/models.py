@@ -12,8 +12,8 @@ class Pengguna(PolymorphicModel):
 
 
 class AvailableDateTime(models.Model):
-    available_time_begin = models.DateTimeField(blank=True, null=True)
-    available_time_end = models.DateTimeField(blank=True, null=True)
+    available_time_begin = models.DateTimeField()
+    available_time_end = models.DateTimeField()
 
 
 class Driver(Pengguna):
@@ -22,9 +22,11 @@ class Driver(Pengguna):
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     fee_per_km = models.IntegerField(blank=True, null=True)
     license_plate = models.CharField(max_length=20, blank=True, null=True)
-    images = models.ImageField(upload_to='images/driver/', default='images/default.png')
+    images = models.ImageField(upload_to='images/driver/', default='base/image/default.png')
 
 
 class Customer(Pengguna):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    images = models.ImageField(upload_to='images/customer/', default='images/default.png')
+    images = models.ImageField(upload_to='images/customer/', default='base/image/default.png')
+
+

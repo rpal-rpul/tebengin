@@ -31,6 +31,7 @@ def update_data(request):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your data was successfully updated!')
             return HttpResponseRedirect('/profile')
         
     if is_driver:
