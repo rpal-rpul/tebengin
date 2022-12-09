@@ -4,9 +4,7 @@ from profilepage.forms import CustomerForm, DriverForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.http.response import JsonResponse
-# Create your views here.
-
+from django.contrib import messages 
 
 @login_required(login_url='/authentication/login')
 def profile(request):
@@ -51,16 +49,30 @@ def update_data(request):
 def change_password(request):
     profile, is_driver, is_customer = get_profile(request)
     if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
             return redirect('/profile')
-    form = PasswordChangeForm(user=request.user)
-    response = {'form': form, 'profile': profile}
-    
-    return render(request, 'profilepage/change_password.html', response)
+        else:
+            return render(request, 'profilepage/change_password.html', {
+                'form': form,
+                'profile': profile,
+                'isdriver': is_driver,
+                'iscustomer': is_customer,
+            })
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form': form,
+        'profile': profile,
+        'isdriver': is_driver,
+        'iscustomer': is_customer,
+    }
+    return render(request, 'profilepage/change_password.html', context)
 
+    
 def get_profile(request):
     current_user = request.user
     # get current user's profile from polymorphic model

@@ -87,10 +87,11 @@ def sign_in(request):
 
         if user is not None:
             login(request, user)
-            # redirect ke home
             return redirect('/')
-
+        else:
+            return render(request, 'authentication/login.html', {'message': 'Wrong username or password'})
     return render(request, 'authentication/login.html')
+
 
 def logout_user(request):
     logout(request)

@@ -5,12 +5,19 @@
     <title>Profile</title>    
     <link rel="stylesheet" href="{% static 'profilepage/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'authentication/css/registerUser.css'%}">
-    <script src="{% static 'profilepage/js/update.js' %}"></script>
+    <script src="{% static 'profilepage/js/notification.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock meta %}
 
 {% block content %}
   <div class="container" style="margin-bottom:150px;">
+    {% if messages %}
+    <ul class="alert alert-success" role="alert" style="list-style-type: none; margin-top: 30px; margin-bottom: 30px;">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div id="profil">
       <div class="topdown" style="margin-bottom: 30px;">
         <p style="font-size:35px;font-weight:bold; margin-top:30px;"> Profile </p>
@@ -91,5 +98,6 @@
       </div>
     </div>
   </div>
-
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 {% endblock content %}
