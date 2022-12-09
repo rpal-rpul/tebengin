@@ -22,14 +22,15 @@ def profile(request):
     return render(request, 'profilepage/profilepage.html', context)
     
 @login_required(login_url='/authentication/login')
-def update_data(request, *args, **kwargs):
+def update_data(request):
     profile, is_driver, is_customer = get_profile(request)
     
     if request.method == 'POST':
         if is_driver:
-            form = DriverForm(request.POST, request.FILES, instance=profile.driver)
+            form = DriverForm(request.POST,request.FILES, instance=profile.driver)
         else:
             form = CustomerForm(request.POST, request.FILES, instance=profile.customer)
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/profile')
@@ -57,7 +58,7 @@ def change_password(request):
             return redirect('/profile')
     form = PasswordChangeForm(user=request.user)
     response = {'form': form, 'profile': profile}
-    print(response)
+    
     return render(request, 'profilepage/change_password.html', response)
 
 def get_profile(request):

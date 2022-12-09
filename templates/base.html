@@ -176,10 +176,14 @@
           aria-expanded="false"
         >
           <div class="avatar avatar-md2">
-            <img src="{{profile.images.url}}" alt="Avatar" />
+              {% if profile.images %}
+              <img src="{{profile.images.url}}" alt="Avatar" />
+              {% else %}
+              <img src="{% static 'base/image/default.png' %}" alt="Avatar" />
+              {% endif %}
           </div>
           <div class="text">
-            <h6 class="user-dropdown-name">{{ request.user }}</h6>
+              <h6 class="user-dropdown-name">{{ request.user }}</h6>
           </div>
         </a>
         <ul
