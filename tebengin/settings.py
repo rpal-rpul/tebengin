@@ -152,11 +152,11 @@ STATIC_URL = '/static/'
 # This shouldn't be included in your Git repository.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles').replace('\\', '/')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_URL = '/app/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media').replace('\\', '/')
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),   
+    os.path.join(BASE_DIR, 'static').replace('\\', '/'),   
 ]
 
 # Make sure the directories exist to prevent errors when doing `collectstatic`.
