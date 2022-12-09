@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -156,7 +156,7 @@ MEDIA_URL = '/app/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media').replace('\\', '/')
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static').replace('\\', '/'),   
+    os.path.join(BASE_DIR, 'app/static').replace('\\', '/'),   
 ]
 
 # Make sure the directories exist to prevent errors when doing `collectstatic`.
