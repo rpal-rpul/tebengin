@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-&y4-im*3a3z8%wtx$ff7#@)iys#g#2lq@s*x()89lla_)elqj0
 PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = not PRODUCTION
-DEBUG = True
+DEBUG = not PRODUCTION
 
 APP_NAME = os.getenv('APP_NAME', '')
 
@@ -43,13 +42,12 @@ if not PRODUCTION:
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic', 
-    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'polymorphic',
     'authentication',
     'profilepage',
@@ -60,13 +58,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tebengin.urls'
@@ -74,7 +72,7 @@ ROOT_URLCONF = 'tebengin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,19 +148,18 @@ STATIC_URL = '/static/'
 
 # This is the directory for storing `collectstatic` results.
 # This shouldn't be included in your Git repository.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles').replace('\\', '/')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = '/app/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media').replace('\\', '/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app/static').replace('\\', '/'),   
+    BASE_DIR / 'static',
 ]
 
 # Make sure the directories exist to prevent errors when doing `collectstatic`.
 for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    directory.mkdir(exist_ok=True)
 
 # Enable compression and caching features of whitenoise.
 # You can remove this if it causes problems on your setup.
