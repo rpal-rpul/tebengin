@@ -1,0 +1,497 @@
+/* change calendar icon color in input field */
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0.6;
+  filter: invert(100%);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+.checkboxgroup {
+  display: inline-block;
+  text-align: center;
+}
+.checkboxgroup label {
+  display: block;
+}
+.col {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.menu-tara {
+  padding: 50px;
+  background: white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin: 15px;
+  border-radius: 15px;
+  transition: 150ms;
+}
+
+.menu-tara:hover {box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), inset 0px 0px 10px rgba(0, 0, 0, 0.25);}
+.menu-tara p {margin-bottom: 0px; font-size: 24px; color: #303030;}
+.menu-tara img {width: 80px; margin-bottom: 20px; margin-top: 30px;}
+
+.menu-tara:hover .add_item {
+  display: block;
+}
+
+.add_item {
+  color: white !important;
+  background-color: #0c51b3;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 36px !important;
+  font-weight: 700;
+  line-height: 36px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 0.5px solid #0c51b3;
+  display: none;
+  transition: ease;
+}
+
+.add_item:hover {
+  color: #0c51b3 !important;
+  background-color: white;
+}
+
+.choiceRoleForm{
+  color: white;
+  height: 100%;
+
+}
+
+
+/* used in AJAX to display or hide form */
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+body {
+  background: linear-gradient(
+    259.72deg,
+    #8451e8 -2.61%,
+    #e488d1 54.64%,
+    #ff6782 102.08%
+  );
+}
+
+/* Sign Up Section */
+
+.sign-up {
+  border-radius: 20px;
+  background: #383838;
+  box-shadow: 0px 4px 40px #9e4373;
+  padding: 3rem;
+  margin: 5rem 0;
+}
+
+.sign-up h2 {
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.flexing {
+  margin-top: 2rem;
+}
+
+.flexing .user-box {
+  position: relative;
+}
+
+.flexing .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.flexing .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.flexing .user-box input:focus ~ label,
+.flexing .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.flexing form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.flexing a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.flexing a span {
+  position: absolute;
+  display: block;
+}
+
+.flexing a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.flexing a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.flexing a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.flexing a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+
+
+.choices ul {
+  color: rgb(209, 209, 209);
+  font-size: 1.1rem;
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Both Register and Login */
+
+p {
+  color: rgb(223, 223, 223);
+}
+
+a {
+  text-decoration: none;
+  color: #bc9cfc;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #9162ee;
+}
+
+/* login CSS */
+
+.login-form {
+  margin: 7rem 0;
+  padding: 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0px 4px 40px #9e4373;
+  border-radius: 20px;
+  background: #383838;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic;
+  margin-top: 1rem;
+  color: rgb(140, 94, 248);
+}
+
+.left-content img {
+  width: 450px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-content h2,h4 {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+
+.login form {
+  width: 360px;
+}
+
+.right-content .input-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 25px 0;
+  padding: 5px 0;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.i {
+  color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-wrapper > div {
+  position: relative;
+  height: 45px;
+}
+
+.input-wrapper > div > label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.input-wrapper > div > input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.login input + label {
+  pointer-events: none;
+}
+
+.login input:focus + label,
+.login input + label.focus {
+  font-size: 1em;
+  font-weight: 400;
+  transform: translateY(-2.5em);
+}
+
+@media screen and (max-width: 1000px) {
+  form {
+    width: 290px;
+  }
+
+  /* Register */
+  .flexing {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Login */
+
+  .right-content h2 {
+    font-size: 2rem;
+    margin: 8px 0;
+  }
+
+  .doctor-img {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  /* Register */
+  .form-right .input-wrapper-register:first-child {
+    margin-top: 0;
+  }
+
+  .form-right .form-left {
+    width: 250px;
+  }
+
+  /* Login */
+  .login-form {
+    grid-template-columns: 1fr;
+  }
+
+  .left-content {
+    display: none;
+  }
+
+  .right-content {
+    justify-content: center;
+  }
+}
+
+form .upload-image {
+  width: 300px;
+  text-align: left;
+  }
+  form .upload-image .input-title {
+  color: #fff;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  }
+  form .upload-image .input-holder, form .upload-image .preview-img-holder {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  vertical-align: middle;
+  }
+  form .upload-image .input-holder:hover, form .upload-image .preview-img-holder:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  }
+  form .upload-image .input-holder .icon, form .upload-image .preview-img-holder .icon {
+  display: inline-block;
+  font-size: 30px;
+  color: #fff;
+  margin-top: 25px;
+  }
+  .preview-img-upload .preview-img-holder {
+  width: 80px;
+  height: 80px;
+  display: none !important;
+  border: none !important;
+  position: relative;
+  margin-bottom: 14px;
+  }
+  .preview-img-upload .preview-img-holder .remove-image {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  }
+  .preview-img-upload .preview-img-holder .img-holder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  }
+  .preview-img-upload .preview-img-holder .img-holder img {
+  width: 100%;
+  min-height: 100%;
+  }
+  .preview-img-upload.active .preview-img-holder {
+  display: inline-block !important;
+  }
+  .preview-img-upload.active .input-holder {
+  display: none;
+  }

@@ -77,3 +77,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Ignore files migrations
+/authentication/migrations/*.py
+/dashboard_driver/migrations/*.py

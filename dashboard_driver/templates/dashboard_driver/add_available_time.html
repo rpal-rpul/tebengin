@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<link
+  href="{% static 'assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link href="{% static 'assets/css/pages/datatables.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'assets/css/pages/fontawesome.css' %}" rel="stylesheet" type="text/css"/>
+<link
+  href="{% static 'assets/extensions/toastify-js/src/toastify.css' %}"
+  rel="stylesheet"
+/>
+{% endblock meta %}
+
+
+{% block content %}
+<div class="page-heading">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-12 order-md-1 order-last">
+        <h3>Add Available Time</h3>
+        <p class="text-subtitle text-muted">
+          Check your current available time and add your newest available time
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- // Basic multiple Column Form section start -->
+  <section id="multiple-column-form">
+    <div class="row match-height">
+      <div class="col-12">
+        <div class="card">
+          <div class="text-center m-3">
+            <button
+              aria-controls="collapseButton"
+              aria-expanded="false"
+              class="btn btn-primary "
+              data-bs-target="#collapseButton"
+              data-bs-toggle="collapse"
+              type="button"
+            >
+              Add available time
+            </button>
+          </div>
+          <form class="form collapse m-3" id="collapseButton">
+            <div class="row mt-3">
+              <div class="col-md-6 col-12">
+                <div class="form-group">
+                  <label for="begin-time-column">Available time begin</label>
+                  {{form.available_time_begin}}
+                </div>
+              </div>
+              <div class="col-md-6 col-12">
+                <div class="form-group">
+                  <label for="end-time-column">Available time end</label>
+                  {{form.available_time_end}}
+                </div>
+              </div>
+              {% if error_message %}
+              <div class="alert alert-danger alert-dismissible show fade">
+                {{ error_message }}
+                <button
+                  aria-label="Close"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  type="button"
+                ></button>
+              </div>
+              {% endif %}
+              <div class="col-12 d-flex justify-content-end">
+                <button
+                  class="button btn btn-primary me-1 mb-1"
+                  id="button-add-available-time"
+                  type="button"
+                >Submit
+                </button>
+                <input
+                  class="btn btn-light-secondary me-1 mb-1"
+                  type="reset"
+                >
+
+              </div>
+            </div>
+          </form>
+          <h5 class="card-title mt-3 ms-3">Your current available time</h5>
+          <div class="card-content">
+            <div class="card-body">
+              <table class="table" id="table1">
+                <thead>
+                <tr>
+                  <th>Available time begin</th>
+                  <th>Available time end</th>
+                </tr>
+                </thead>
+                <tbody id="body-available-time">
+                {% for model in models %}
+                <tr>
+                  <td>{{ model.available_time_begin }}</td>
+                  <td>{{ model.available_time_end }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- // Basic multiple Column Form section end -->
+
+
+  {% block script %}
+  <script src="{% static 'assets/extensions/jquery/jquery.min.js' %}"></script>
+  <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js" type="text/javascript"></script>
+  <script src="{% static 'assets/js/pages/datatables.js' %}"></script>
+  <script src="{% static 'js/add_available_time.js' %}"></script>
+  <script src="{% static 'assets/extensions/toastify-js/src/toastify.js' %}"></script>
+  {% endblock script %}
+
+</div>
+
+{% endblock content %}
