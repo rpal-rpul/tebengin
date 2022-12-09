@@ -7,9 +7,6 @@ from dashboard_driver.forms import AddAvailableTimeForm
 from dashboard_driver.models import DashboardDriver, OrderStatus
 from django.forms.models import model_to_dict
 from main.views import check_user_role
-import json
-from django.core import serializers
-from datetime import datetime
 
 @csrf_exempt
 @login_required(login_url='/authentication/login/')
