@@ -26,3 +26,4 @@ class Order(models.Model):
 class DashboardDriver(models.Model):
     driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
     order = models.ManyToManyField(Order, blank=True)
+

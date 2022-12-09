@@ -1,0 +1,93 @@
+/* @import url(https://fonts.googleapis.com/css?family=Mulish); */
+body {
+  margin: 0;
+  font-family: "Mulish";
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 65px;
+}
+
+.navbar {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.navbar-brand b {
+  font-size: 1.25rem;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  text-align: center;
+  /* padding: 14px 1px; */
+  text-decoration: none;
+  font-family: "Mulish";
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background: rgb(58, 58, 58);
+  color: black;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+}
+
+footer {
+  font-family: "Mulish";
+  color: white;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+  margin-top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background-color: #6b46c1;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+footer h4 {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+footer h5 {
+  padding: 0;
+  margin: 0;
+}
+
+#card {
+  background: #030517;
+  border-radius: 8px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  height: 500px;
+  margin: 15rem auto 15rem auto;
+  width: 350px;
+}
+
+@media screen and (max-width: 991px) {
+  .user-info {
+    display: block;
+  }
+
+  .user-info button {
+    margin-top: 30px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

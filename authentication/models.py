@@ -14,8 +14,8 @@ class Pengguna(PolymorphicModel):
 
 
 class AvailableDateTime(models.Model):
-    available_time_begin = models.DateTimeField(blank=True, null=True)
-    available_time_end = models.DateTimeField(blank=True, null=True)
+    available_time_begin = models.DateTimeField()
+    available_time_end = models.DateTimeField()
 
 
 class Driver(Pengguna):
