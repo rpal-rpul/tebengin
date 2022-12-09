@@ -1,11 +1,18 @@
 from django.shortcuts import render
-from authentication.models import Customer
+from authentication.models import Customer, Pengguna
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/authentication/login')
 def home(request):
-    profile = request.user
-    is_driver = check_user_role(profile)
+    current_user = request.user
+    is_driver = check_user_role(current_user)
+    try:
+        profile = Pengguna.objects.filter(driver__user=current_user)[0]
+    except:
+        profile = Pengguna.objects.filter(customer__user=current_user)[0]
     context = {
-        'user': profile,
+        'user': current_user,
+        'profile': profile,
         'is_driver': is_driver
     }
     

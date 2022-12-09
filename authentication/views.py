@@ -16,7 +16,7 @@ def register(request):
         'roleDriver': False,
         'roleCustomer': False
     }
-    return render(request, 'authentication/register.html', argument)
+    return render(request, 'authentication/registerRole.html', argument)
 
 @csrf_exempt
 def registerPenggunaRole(request, message="", role=None):
@@ -59,6 +59,7 @@ def register_driver(request):
             driver = Driver.objects.create(user=user, email=email, images=images)
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
+    return render(request, 'authentication/register.html', {'form': form})
 
 @csrf_exempt
 def register_customer(request):
@@ -75,6 +76,7 @@ def register_customer(request):
             Customer.objects.create(user=user, email=email, images=images)
 
             return redirect('/authentication/login/')
+    return render(request, 'authentication/register.html', {'form': form})
 
 
 def sign_in(request):
@@ -91,8 +93,6 @@ def sign_in(request):
 
     return render(request, 'authentication/login.html')
 
-
 def logout_user(request):
-    if request.user.is_authenticated:
-        logout(request)
+    logout(request)
     return redirect('/')

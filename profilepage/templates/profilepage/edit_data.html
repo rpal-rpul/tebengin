@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block meta %}
+<title>Change Password</title>
+<link
+  rel="stylesheet"
+  href="{% static 'authentication/css/registerUser.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'profilepage/css/style.css' %}"
+/>
+{% endblock meta %} 
+{% block content %}
+<body>
+  <div class="container d-flex justify-content-center">
+    <div style="padding-bottom: 20px; padding-top: 20px;">
+        <button href="#" type="cancel" onclick="history.back();return false" class="btn btn-danger" id="bodyButton"
+        >Go Back</button>
+    </div>
+    <div class="sign-up show">
+      <form 
+        method="POST" 
+        class="form-signup" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% comment %} <div class="upload-image preview-img-upload"><span class="input-title">Profile Picture*</span>
+          <div class="preview-img-holder"><span class="remove-image fa fa-times"></span>
+          <div class="img-holder"><img class="preview-img" src="" alt="image" draggable="false"/></div>
+          </div>
+          <label class="input-holder"><span class="icon fa fa-cloud-upload"></span>
+          <input class="hide" type="file" name="images" accept="image/*"/>
+          </label>
+        </div> {% endcomment %}
+        <div class="center">
+            <button type="submit" class="button1" id="bodyButton">Edit Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+{% endblock content %}
