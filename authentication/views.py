@@ -79,7 +79,7 @@ def register_customer(request):
             user = User.objects.get(username=username)
 
             customer = Customer.objects.create(user=user, email=email, name=name)
-            driver = Driver.objects.create(user=user, email=email)
+
             DashboardCustomer.objects.create(customer=customer)
 
             return redirect('/authentication/login/')
