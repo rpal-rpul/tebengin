@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<link
+  href="{% static 'assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'assets/css/pages/datatables.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'assets/css/pages/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'assets/extensions/toastify-js/src/toastify.css' %}"
+  rel="stylesheet"
+/>
+{% endblock meta %} {% block content %}
+<div class="page-heading">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-1 order-last">
+        <h3>Booking Driver</h3>
+        <p class="text-subtitle text-muted">
+          Choose the driver according to your destination
+        </p>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="card">
+      <div class="card-header">List Driver</div>
+      <div class="card-body">
+        <table class="table" id="table1">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>Destination</th>
+              <th>Distance</th>
+              <th>Fee per KM</th>
+              <th>License Plate</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for model in models%}
+            <tr>
+              <td class="text-bold-500">{{model.user}}</td>
+              <td class="text-bold-500">{{model.phone_number}}</td>
+              <td class="text-bold-500">{{model.destination}}</td>
+              <td class="text-bold-500">{{model.distance_from_campus}}</td>
+              <td class="text-bold-500">{{model.fee_per_km}}</td>
+              <td class="text-bold-500">{{model.license_plate}}</td>
+              <td>
+                <a href="#" class="btn btn-primary">Booking</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {% block script %}
+  <script src="{% static 'assets/extensions/jquery/jquery.min.js' %}"></script>
+  <script
+    src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"
+    type="text/javascript"
+  ></script>
+  <script src="{% static 'assets/js/pages/datatables.js' %}"></script>
+  <script src="{% static 'assets/extensions/toastify-js/src/toastify.js' %}"></script>
+  {% endblock script %}
+</div>
+
+{% endblock content %}

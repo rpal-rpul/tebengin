@@ -1,6 +1,7 @@
 import json
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from authentication.models import *
 from dashboard_driver.models import *
@@ -46,15 +47,18 @@ def create_order(request):
         return JsonResponse(json.loads(serialized), safe = False)
 
 @csrf_exempt
+@login_required(login_url='/authentication/login/')
 def show_all_driver(request):
     customer = request.user # Customer sedang login
     if customer.is_anonymous:
         return JsonResponse({"result": "Belum login"}, status=200)
     if request.method == 'GET':
         driver_available = Driver.objects.all()
+        context = {"models": driver_available}
         serialized_data = serializers.serialize('json', driver_available)
 
-        return JsonResponse(json.loads(serialized_data), safe = False)
+        return render(request, 'booking_driver.html', context)
+    return JsonResponse(json.loads(serialized_data), safe = False)
 
 @csrf_exempt
 def show_filtered_driver(request):

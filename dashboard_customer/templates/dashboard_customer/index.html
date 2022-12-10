@@ -1,0 +1,18 @@
+{% block content %}
+
+<h1>Dashboard Customer!</h1>
+
+<table>
+  <thead>
+    <th>rejected_order</th>
+  </thead>
+  <tbody>
+  {% for entry in rejected_order %}
+    <tr>
+      <td>{{entry.order_date}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
