@@ -146,19 +146,16 @@
             </a>
             <ul class="submenu">
               <li class="submenu-item">
-                <a href="component-alert.html">Pending</a>
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=pending">Pending</a>
               </li>
               <li class="submenu-item">
-                <a href="component-badge.html">Accepted</a>
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=accepted">Accepted</a>
               </li>
               <li class="submenu-item">
-                <a href="component-breadcrumb.html">Rejected</a>
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=rejected">Rejected</a>
               </li>
               <li class="submenu-item">
-                <a href="component-breadcrumb.html">Finished</a>
-              </li>
-              <li class="submenu-item">
-                <a href="component-breadcrumb.html">Review</a>
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=finished">Finished</a>
               </li>
             </ul>
           </li>
