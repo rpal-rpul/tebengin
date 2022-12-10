@@ -10,7 +10,7 @@ from django.contrib import messages
 def profile(request):
     
     profile, is_driver, is_customer = get_profile(request)
-    profile.is_authenticated = True
+    
     context = {
         'user': request.user,
         'profile': profile,
@@ -77,12 +77,19 @@ def change_password(request):
 def get_profile(request):
     current_user = request.user
     # get current user's profile from polymorphic model
-    try:
-        profile = Pengguna.objects.filter(driver__user=current_user)[0]
-        isdriver,iscustomer = True,False
-    except:
-        profile = Pengguna.objects.filter(customer__user=current_user)[0]
+    profile = Pengguna.objects.filter(driver__user=current_user)
+    isdriver,iscustomer = True,False
+
+    if not profile:
+        profile = Pengguna.objects.filter(customer__user=current_user)
         isdriver,iscustomer = False,True
-    profile.is_authenticated = True
+        if not profile:
+            isdriver,iscustomer = False,False
     
+    if not profile:
+        profile = None 
+    else:
+        profile = profile[0] 
+        # profile.is_authenticated = True  
+        
     return profile, isdriver, iscustomer

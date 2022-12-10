@@ -6,10 +6,16 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     current_user = request.user
     is_driver = check_user_role(current_user)
-    try:
-        profile = Pengguna.objects.filter(driver__user=current_user)[0]
-    except:
-        profile = Pengguna.objects.filter(customer__user=current_user)[0]
+    
+    profile = Pengguna.objects.filter(driver__user=current_user)
+    if not profile:
+        profile = Pengguna.objects.filter(customer__user=current_user)
+    
+    if not profile:
+        profile = None 
+    else:
+        profile = profile[0]   
+    
     context = {
         'user': current_user,
         'profile': profile,
