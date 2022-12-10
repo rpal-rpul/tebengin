@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-&y4-im*3a3z8%wtx$ff7#@)iys#g#2lq@s*x()89lla_)elqj0
 PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not PRODUCTION
+# DEBUG = not PRODUCTION
+DEBUG = True
 
 APP_NAME = os.getenv('APP_NAME', '')
 
@@ -58,13 +59,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tebengin.urls'
