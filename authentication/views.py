@@ -2,7 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from authentication.forms import ChoiceRoleForm, CustomerRoleForm, DriverRoleForm
 from django.contrib.auth import authenticate, login, logout
-from dashboard_driver.models import DashboardDriver
+from dashboard_driver.models import DashboardDriver, Order, OrderStatus
+from dashboard_customer.models import DashboardCustomer
 from .models import Driver, Customer
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
@@ -76,10 +77,14 @@ def register_customer(request):
             # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            Customer.objects.create(user=user, email=email, name=name)
+
+            customer = Customer.objects.create(user=user, email=email, name=name)
+            driver = Driver.objects.create(user=user, email=email)
+            DashboardCustomer.objects.create(customer=customer)
 
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
+
 
 @csrf_exempt
 def sign_in(request):
@@ -96,7 +101,7 @@ def sign_in(request):
             return render(request, 'authentication/login.html', {'message': 'Wrong username or password'})
     return render(request, 'authentication/login.html')
 
-
+@csrf_exempt
 def logout_user(request):
     logout(request)
     return redirect('/')

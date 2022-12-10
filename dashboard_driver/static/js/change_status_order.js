@@ -1,5 +1,4 @@
 function accept_order(id_order){
-console.log(id_order)
     $.ajax({
         url: "/respons-order/accept-order",
          type: "POST",

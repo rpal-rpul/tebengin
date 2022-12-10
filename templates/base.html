@@ -100,19 +100,68 @@
             </div>
           </div>
         </div>
-        <div class="sidebar-menu">
-          <ul class="menu">
-            <li class="sidebar-title">Menu</li>
-            {% if request.user.is_authenticated and is_driver %}
-            <li class="sidebar-item">
-              <a
-                class="sidebar-link"
-                href="{% url 'dashboard_driver:addAvailableTime' %}"
-              >
-                <i class="bi bi-plus-circle-fill"></i>
-                <span>Add Available Time</span>
-              </a>
-            </li>
+      </div>
+      <div class="sidebar-menu">
+        <ul class="menu">
+          <li class="sidebar-title">Menu</li>
+          {% if request.user.is_authenticated and is_driver %}
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link"
+              href="{% url 'dashboard_driver:addAvailableTime' %}"
+            >
+              <i class="bi bi-plus-circle-fill"></i>
+              <span>Add Available Time</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item has-sub">
+            <a class="sidebar-link" href="#">
+              <i class="bi bi-stack"></i>
+              <span>Dashboard</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_driver:getDriverOrder' %}?status=pending">Pending</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_driver:getDriverOrder' %}?status=accepted">Accepted</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_driver:getDriverOrder' %}?status=rejected">Rejected</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_driver:getDriverOrder' %}?status=finished">Finished</a>
+              </li>
+              <li class="submenu-item">
+                <a href="">Review</a>
+              </li>
+            </ul>
+          </li>
+
+          {% elif request.user.is_authenticated and not is_driver %}
+          <li class="sidebar-item has-sub">
+            <a class="sidebar-link" href="#">
+              <i class="bi bi-stack"></i>
+              <span>Dashboard</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=pending">Pending</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=accepted">Accepted</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=rejected">Rejected</a>
+              </li>
+              <li class="submenu-item">
+                <a href="{% url 'dashboard_customer:getCustomerOrder' %}?status=finished">Finished</a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+
 
             <li class="sidebar-item has-sub">
               <a class="sidebar-link" href="#">
@@ -282,8 +331,9 @@
   <script src="{% static 'assets/js/bootstrap.js' %}"></script>
   <script src="{% static 'assets/js/app.js' %}"></script>
 
-  <!-- Need: Apexcharts -->
-  <script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
-  <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
-  {% block script %} {% endblock script %}
+<!-- Need: Apexcharts -->
+<script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
+{% block script %} {% endblock script %}
 </html>
+
