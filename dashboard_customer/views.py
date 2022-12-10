@@ -11,7 +11,6 @@ from authentication.models import Pengguna
 from django.core import serializers
 import json
 from main.views import check_user_role
-from dashboard_customer.forms import AddReviewForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -19,11 +18,9 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/authentication/login/')
 def add_review(request):
     user_id = request.user.id
-    form = AddReviewForm(request.POST)
     is_driver = check_user_role(request.user)
     context = {
             'is_driver': is_driver,
-            'form': form
         }
     customer = User.objects.get(pk=user_id)
 
@@ -84,9 +81,6 @@ def getCustomerOrder(request):
         elif status == 'finished':
             context["order"] = list(dashboard_customer.order.filter(status=OrderStatus.FINISHED))
             context["title"] = "Finished Order"
-
-            form = AddReviewForm(request.POST)
-            context["form"] = form
 
         return render(request, "dashboard_customer/index.html", context)
     return JsonResponse({"failed": "Not using GET method"}, status=405)
