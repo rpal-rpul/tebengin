@@ -9,24 +9,39 @@ from dashboard_driver.models import OrderStatus
 from authentication.models import Pengguna
 from django.core import serializers
 import json
+from main.views import check_user_role
+from dashboard_customer.forms import AddReviewForm
 
 # Create your views here.
 @csrf_exempt
+@login_required(login_url='/authentication/login/')
 def add_review(request):
-    print(request.POST)
-    print(request.user.id)
-    if request.method == 'POST':
-        id_customer = request.POST["id_customer"]
-        id_driver = request.POST["id_driver"]
-        if request.POST["isi"] == "":
-            return JsonResponse({"error": "Tidak ada input diberikan"}, status=200)
-        message = request.POST["isi"]
-        customer = User.objects.get(pk=id_customer)
-        driver = User.objects.get(pk=id_driver)
-        customer_login = User.objects.get(pk=request.user.id)
+    user = request.user
+    form = AddReviewForm(request.POST)
+    is_driver = check_user_role(request.user)
+    context = {
+            'is_driver': is_driver,
+            'form': form
+        }
+    customer = Customer.objects.get(user=user)
 
-        Review.objects.create(message=message, driver=driver, customer=customer_login)
-        return HttpResponse({})
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            form_instance = form.instance
+            context = model_to_dict(form_instance)
+        return JsonResponse(context, status=200)
+
+    if request.method == 'GET':
+        is_driver = check_user_role(request.user)
+        context = {'is_driver': is_driver, 'form': form,
+                   "models": driver.available_time.all()}
+        return render(request, 'dashboard_driver/add_review_form.html', context, status=200)
+
+    if request.is_ajax():
+        return JsonResponse()
+
+    return JsonResponse({"failed": "Not using right method"}, status=405)
         
 @csrf_exempt
 def get_review(request):

@@ -138,6 +138,30 @@
             </ul>
           </li>
 
+          {% elif request.user.is_authenticated and not is_driver %}
+          <li class="sidebar-item has-sub">
+            <a class="sidebar-link" href="#">
+              <i class="bi bi-stack"></i>
+              <span>Dashboard</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="component-alert.html">Pending</a>
+              </li>
+              <li class="submenu-item">
+                <a href="component-badge.html">Accepted</a>
+              </li>
+              <li class="submenu-item">
+                <a href="component-breadcrumb.html">Rejected</a>
+              </li>
+              <li class="submenu-item">
+                <a href="component-breadcrumb.html">Finished</a>
+              </li>
+              <li class="submenu-item">
+                <a href="component-breadcrumb.html">Review</a>
+              </li>
+            </ul>
+          </li>
           {% endif %}
 
           {% if not request.user.is_authenticated %}
