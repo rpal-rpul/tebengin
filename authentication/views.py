@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from dashboard_driver.models import DashboardDriver
 from .models import Driver, Customer
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def register(request):
