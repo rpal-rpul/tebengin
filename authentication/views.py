@@ -52,10 +52,12 @@ def register_driver(request):
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
+            phone_number = request.POST['phone_number']
+            name = request.POST['username']
             # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            driver = Driver.objects.create(user=user, email=email)
+            driver = Driver.objects.create(user=user, email=email, phone_number=phone_number, name=name)
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
@@ -69,10 +71,11 @@ def register_customer(request):
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
+            name = request.POST['username']
             # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            Customer.objects.create(user=user, email=email)
+            Customer.objects.create(user=user, email=email, name=name)
 
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})

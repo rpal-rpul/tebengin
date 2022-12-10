@@ -9,6 +9,7 @@ class ChoiceRoleForm(forms.Form):
 
 class DriverRoleForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
+    phone_number = forms.CharField(max_length=20)
 
 
 class CustomerRoleForm(UserCreationForm):
