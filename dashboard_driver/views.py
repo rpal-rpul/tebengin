@@ -13,7 +13,11 @@ from main.views import check_user_role
 def addAvailableTime(request):
     user = request.user
     form = AddAvailableTimeForm(request.POST)
-    is_driver = check_user_role(request.user)
+    is_driver = check_user_role(user)
+
+    if not is_driver:
+        return render(request, "forbidden_page.html")
+
     context = {
         'is_driver': is_driver,
         'form': form
@@ -50,9 +54,6 @@ def addAvailableTime(request):
                    "models": driver.available_time.all()}
         return render(request, 'dashboard_driver/add_available_time.html', context, status=200)
 
-    if request.is_ajax():
-
-        return JsonResponse()
     return JsonResponse({"failed": "Not using right method"}, status=405)
 
 
@@ -61,13 +62,27 @@ def addAvailableTime(request):
 def getDriverOrder(request):
     user = request.user
     if request.method == 'GET':
+        is_driver = check_user_role(user)
+        if not is_driver:
+            return render(request, "forbidden_page.html")
         driver = Driver.objects.get(user=user)
         dashboard_driver = DashboardDriver.objects.get(driver=driver)
-        value = {
-            "accepted_order": list(dashboard_driver.order.filter(status=OrderStatus.ACCEPTED)),
-            "rejected_order": list(dashboard_driver.order.filter(status=OrderStatus.REJECTED)),
-            "pending_order": list(dashboard_driver.order.filter(status=OrderStatus.PENDING)),
-            "history_order": list(dashboard_driver.order.filter(status=OrderStatus.FINISHED)),
-        }
-        return render(request, "dashboard_driver/index.html", value)
+        status = request.GET.get('status')
+
+        context = {"is_driver": is_driver}
+        if status == 'accepted':
+            context["order"] = list(dashboard_driver.order.filter(status=OrderStatus.ACCEPTED))
+            context["title"] = "Accepted Order"
+        elif status == 'rejected':
+            context["order"] = list(dashboard_driver.order.filter(status=OrderStatus.REJECTED))
+            context["title"] = "Rejected Order"
+        elif status == 'pending':
+            context["order"] = list(dashboard_driver.order.filter(status=OrderStatus.PENDING))
+            context["title"] = "Pending Order"
+            print(dashboard_driver.order.all())
+        elif status == 'finished':
+            context["order"] = list(dashboard_driver.order.filter(status=OrderStatus.FINISHED))
+            context["title"] = "Finished Order"
+
+        return render(request, "dashboard_driver/index.html", context)
     return JsonResponse({"failed": "Not using GET method"}, status=405)
