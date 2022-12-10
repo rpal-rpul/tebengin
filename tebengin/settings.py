@@ -156,6 +156,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'media',
 ]
 
 # Make sure the directories exist to prevent errors when doing `collectstatic`.
