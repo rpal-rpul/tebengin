@@ -7,5 +7,5 @@ urlpatterns = [
     path('add-review/', add_review),
     path('get-review/', get_review),
     path('get-review-driver/', get_review_driver),
-    path('', getCustomerOrder)
+    path('', getCustomerOrder, name="getCustomerOrder")
 ]

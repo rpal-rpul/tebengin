@@ -17,6 +17,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 import authentication.urls as authentication
+import dashboard_customer.urls as dashboard_customer
 import dashboard_driver.urls as dashboard_driver
 import respons_order.urls as respons_order
 import booking_driver.urls as booking_driver
@@ -26,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('authentication/', include(authentication)),
+    path('dashboard-customer/', include(dashboard_customer)),
     path('dashboard-driver/', include(dashboard_driver)),
     # path('dashboard-customer/', include(dashboard_customer)),
     path('respons-order/', include(respons_order)),
@@ -33,5 +35,4 @@ urlpatterns = [
     path('profile/', include(profilepage)),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

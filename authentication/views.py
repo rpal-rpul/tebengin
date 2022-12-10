@@ -2,7 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from authentication.forms import ChoiceRoleForm, CustomerRoleForm, DriverRoleForm
 from django.contrib.auth import authenticate, login, logout
-from dashboard_driver.models import DashboardDriver
+from dashboard_driver.models import DashboardDriver, Order, OrderStatus
+from dashboard_customer.models import DashboardCustomer
 from .models import Driver, Customer
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
@@ -53,10 +54,12 @@ def register_driver(request):
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
+            phone_number = request.POST['phone_number']
+            name = request.POST['username']
             # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            driver = Driver.objects.create(user=user, email=email)
+            driver = Driver.objects.create(user=user, email=email, phone_number=phone_number, name=name)
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
@@ -70,13 +73,18 @@ def register_customer(request):
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
+            name = request.POST['username']
             # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            Customer.objects.create(user=user, email=email)
+
+            customer = Customer.objects.create(user=user, email=email, name=name)
+
+            DashboardCustomer.objects.create(customer=customer)
 
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
+
 
 @csrf_exempt
 def sign_in(request):
@@ -93,7 +101,7 @@ def sign_in(request):
             return render(request, 'authentication/login.html', {'message': 'Wrong username or password'})
     return render(request, 'authentication/login.html')
 
-
+@csrf_exempt
 def logout_user(request):
     logout(request)
     return redirect('/')
