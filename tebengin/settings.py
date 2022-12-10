@@ -29,12 +29,13 @@ SECRET_KEY = 'django-insecure-&y4-im*3a3z8%wtx$ff7#@)iys#g#2lq@s*x()89lla_)elqj0
 PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not PRODUCTION
+# DEBUG = not PRODUCTION
+DEBUG = True
 
 APP_NAME = os.getenv('APP_NAME', '')
 
 ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
-CSRF_TRUSTED_ORIGINS = [f'http://{APP_NAME}.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [f'https://{APP_NAME}.up.railway.app']
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
@@ -51,9 +52,13 @@ INSTALLED_APPS = [
     'polymorphic',
     'authentication',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     'profilepage',
 >>>>>>> c63688cbf4ac2b8bfb0bb9ea61637216ec16e189
+=======
+    'profilepage',
+>>>>>>> fbf9b106606a5e733d22298a6c8ded8b21d8a993
     'main',
     'dashboard_driver',
     'booking_driver'
@@ -61,13 +66,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tebengin.urls'
@@ -95,9 +100,20 @@ WSGI_APPLICATION = 'tebengin.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # uncomment for local development
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    # uncomment for deployment
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('PGDATABASE'),
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
+        'HOST': os.getenv('PGHOST'),
+        'PORT': os.getenv('PGPORT'),
     }
 }
 

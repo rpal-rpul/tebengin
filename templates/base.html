@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 {% load static %}
@@ -83,6 +84,8 @@
 </body>
 
 =======
+=======
+>>>>>>> fbf9b106606a5e733d22298a6c8ded8b21d8a993
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -270,7 +273,12 @@
           id="topbarUserDropdown"
         >
           <div class="avatar avatar-md2">
-            <img alt="Avatar" src="{% static 'assets/images/faces/1.jpg' %}"/>
+          {% comment %} {% if profile.images %}
+            <img src="{{profile.images.url}}" alt="Avatar" />
+          {% else %}
+          <img src="{% static 'base/image/default.png' %}" alt="Avatar" />
+          {% endif %} {% endcomment %}
+            <img alt="Avatar" src="{% static 'base/image/default.png' %}"/>
           </div>
           <div class="text">
             <h6 class="user-dropdown-name">{{ request.user }}</h6>
@@ -318,5 +326,8 @@
 <script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
 <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
 {% block script %} {% endblock script %}
+<<<<<<< HEAD
 >>>>>>> c63688cbf4ac2b8bfb0bb9ea61637216ec16e189
+=======
+>>>>>>> fbf9b106606a5e733d22298a6c8ded8b21d8a993
 </html>

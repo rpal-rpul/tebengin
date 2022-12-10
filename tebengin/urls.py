@@ -15,14 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 import authentication.urls as authentication
 import dashboard_driver.urls as dashboard_driver
 import respons_order.urls as respons_order
 import booking_driver.urls as booking_driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import profilepage.urls as profilepage
 >>>>>>> c63688cbf4ac2b8bfb0bb9ea61637216ec16e189
+=======
+import profilepage.urls as profilepage
+>>>>>>> fbf9b106606a5e733d22298a6c8ded8b21d8a993
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,9 +37,17 @@ urlpatterns = [
     path('dashboard-driver/', include(dashboard_driver)),
     path('respons-order/', include(respons_order)),
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('booking-driver/', include(booking_driver))
 =======
     path('booking-driver/', include(booking_driver)),
     path('profile/', include(profilepage)),
 >>>>>>> c63688cbf4ac2b8bfb0bb9ea61637216ec16e189
+=======
+    path('booking-driver/', include(booking_driver)),
+    path('profile/', include(profilepage)),
+>>>>>>> fbf9b106606a5e733d22298a6c8ded8b21d8a993
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
