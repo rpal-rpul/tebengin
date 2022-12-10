@@ -24,6 +24,7 @@ class AddAvailableTimeForm(forms.ModelForm):
         super(AddAvailableTimeForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['type'] = 'text'
             if field_name == "available_time_begin":
                 field.widget.attrs['id'] = 'begin-time-column'
                 field.widget.attrs['name'] = 'btime-column'
