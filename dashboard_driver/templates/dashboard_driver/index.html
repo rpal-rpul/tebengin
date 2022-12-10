@@ -1,18 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<link
+  href="{% static 'assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link href="{% static 'assets/css/pages/datatables.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'assets/css/pages/fontawesome.css' %}" rel="stylesheet" type="text/css"/>
+<link
+  href="{% static 'assets/extensions/toastify-js/src/toastify.css' %}"
+  rel="stylesheet"
+/>
+{% endblock meta %}
 {% block content %}
 
-<h1>Dashboard Driver!</h1>
+<div class="page-heading">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-1 order-last">
+        <h3>{{ title }}</h3>
+        <p class="text-subtitle text-muted">
+          Your current {{ title|lower }}(s)
+        </p>
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <th>pending_order</th>
-  </thead>
-  <tbody>
-  {% for entry in pending_order %}
-    <tr>
-      <td>{{entry.order_date}}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+  <!-- Basic Tables start -->
+  <section class="section">
+    <div class="card">
+      <div class="card-body">
+        <table class="table" id="table1">
+          <thead>
+          <tr>
+            <th>Pickup Location</th>
+            <th>Destination Location</th>
+            <th>Order Date</th>
+            <th>Pickup Date</th>
+            <th>Distance</th>
+            <th>Fee</th>
+            <th>Customer</th>
+            {% if title == 'Accepted Order' or  title == 'Rejected Order' or title == 'Finished Order'%}
+            <th>Status</th>
+            {% endif %}
+            {% if title == 'Pending Order' or title == 'Accepted Order' %}
+            <th>Action</th>
+            {% endif %}
+
+          </tr>
+          </thead>
+          <tbody>
+          {% for entry in order %}
+          <tr id="{{entry.id}}">
+            <td>{{entry.pickup_location}}</td>
+            <td>{{entry.destination_location}}</td>
+            <td>{{entry.order_date}}</td>
+            <td>{{entry.pickup_date}}</td>
+            <td>{{entry.distance}}</td>
+            <td>{{entry.fee}}</td>
+            <td>{{entry.customer.user}}</td>
+            {% if title == 'Accepted Order'%}
+            <td class="justify-content-center">
+              <span class="badge bg-success">Accepted</span>
+            </td>
+            {% endif %}
+            {% if title == 'Rejected Order'%}
+            <td class="justify-content-center">
+              <span class="badge bg-danger">Rejected</span>
+            </td>
+            {% endif %}
+            {% if title == 'Finished Order' %}
+           <td class="justify-content-center">
+              <span class="badge bg-primary">Finished</span>
+            </td>
+            {% endif %}
+            {% if title == 'Pending Order' %}
+            <td class="justify-content-center">
+              <button type="button" class="btn btn-success rounded-pill m-1" onclick="accept_order({{entry.id}})"
+              >Accept</button
+              >
+              <a onclick="reject_order({{entry.id}})" class="btn btn-danger rounded-pill m-1" href="#"
+              >Reject</a
+              >
+            </td>
+            {% endif %}
+            {% if title == 'Accepted Order' %}
+            <td class="justify-content-center">
+              <button type="button" class="btn btn-primary rounded-pill m-1" onclick="finish_order({{entry.id}})"
+              >Finish</button
+              >
+            </td>
+            {% endif %}
+
+          </tr>
+
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- Basic Tables end -->
+</div>
 
 {% endblock content %}
+{% block script %}
+<script src="{% static 'assets/extensions/jquery/jquery.min.js' %}"></script>
+<script rel="javascript" type="text/javascript" src="{% static 'js/change_status_order.js' %}"></script>
+
+<script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js" type="text/javascript"></script>
+<script src="{% static 'assets/js/pages/datatables.js' %}"></script>
+<script src="{% static 'assets/extensions/toastify-js/src/toastify.js' %}"></script>
+<script src="{% static 'js/add_available_time.js' %}"></script>
+{% endblock script %}
