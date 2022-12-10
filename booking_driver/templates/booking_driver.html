@@ -27,6 +27,46 @@
         <p class="text-subtitle text-muted">
           Choose the driver according to your destination
         </p>
+        <p>Masukkan tanggal & jam keberangkatanmu!</p>
+        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+          data-bs-target="#default">Input Data</button>
+        <hr>
+        <!--Basic Modal -->
+        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel1">Masukkan tanggal & jam keberangkatanmu!</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <p>Masukkan tanggal dan jam keberangkatanmu untuk menemukan driver yang sesuai!</p>
+                  <input
+                        id="booking"
+                        type="datetime-local"
+                        name="booking"
+                        value="2017-06-01T08:30" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+
+                    <button
+                    class="button btn btn-primary me-1 mb-1"
+                    id="button-add-request-datetime"
+                    type="button"
+                  >Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
       </div>
     </div>
   </div>
@@ -46,7 +86,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id = "list-driver">
             {% for model in models%}
             <tr>
               <td class="text-bold-500">{{model.user}}</td>
@@ -56,7 +96,74 @@
               <td class="text-bold-500">{{model.fee_per_km}}</td>
               <td class="text-bold-500">{{model.license_plate}}</td>
               <td>
-                <a href="#" class="btn btn-primary">Booking</a>
+                <a class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#inlineForm"
+              >Booking</a>
+              <div
+                class="modal fade text-left"
+                id="inlineForm"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myModalLabel33"
+                aria-hidden="true"
+              >
+            <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            role="document"
+            >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Booking Form</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <i data-feather="x"></i>
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+                  <label>Requested Datetime: </label>
+                  <div class="form-group">
+                    <input
+                      id = "requested_datetime"
+                      type="datetime-local"
+                      class="form-control"
+                    />
+                  </div>
+                  <label>Pickup Location: </label>
+                  <div class="form-group">
+                    <input
+                      id = "pickup_location"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-light-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                  </button>
+                  <a
+                  onclick="booking_driver('{{model.user}}', '{{model.destination}}', '{{model.fee_per_km}}', '{{model.distance}}')"
+                    type="button"
+                    class="btn btn-primary ml-1"
+                  >
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Booking Order</span>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
               </td>
             </tr>
             {% endfor %}
@@ -73,6 +180,7 @@
     type="text/javascript"
   ></script>
   <script src="{% static 'assets/js/pages/datatables.js' %}"></script>
+  <script rel="javascript" type="text/javascript" src="{% static 'js/filter_driver.js' %}"></script>
   <script src="{% static 'assets/extensions/toastify-js/src/toastify.js' %}"></script>
   {% endblock script %}
 </div>
