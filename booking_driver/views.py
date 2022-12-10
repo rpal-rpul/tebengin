@@ -44,6 +44,7 @@ def create_order(request):
         created_order = Order.objects.create(pickup_location = pickup_location, destination_location = destination, pickup_date = requested_datetime, fee = fee, distance = distance, driver = driver, customer = customer_object)
         serialized_data = model_to_dict(created_order)
         serialized = json.dumps(serialized_data)
+
         return JsonResponse(json.loads(serialized), safe = False)
 
 @csrf_exempt
@@ -58,7 +59,6 @@ def show_all_driver(request):
         serialized_data = serializers.serialize('json', driver_available)
 
         return render(request, 'booking_driver.html', context)
-    return JsonResponse(json.loads(serialized_data), safe = False)
 
 @csrf_exempt
 def show_filtered_driver(request):
@@ -67,8 +67,6 @@ def show_filtered_driver(request):
         return JsonResponse({"result": "Belum login"}, status=200)
     if request.method == 'POST':
         requested_datetime = request.POST.get("request_date")
-        print(requested_datetime)
         driver_available = Driver.objects.filter(available_time__available_time_begin__lt = requested_datetime, available_time__available_time_end__gt = requested_datetime)
         serialized_data = serializers.serialize('json', driver_available)
-
         return JsonResponse(json.loads(serialized_data), safe = False)
