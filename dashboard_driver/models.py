@@ -1,5 +1,6 @@
 from django.db import models
 from authentication.models import Driver, Customer
+from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 
 
@@ -13,8 +14,8 @@ class OrderStatus(models.TextChoices):
 class Order(models.Model):
     pickup_location = models.CharField(max_length=100)
     destination_location = models.CharField(max_length=100)
-    order_date = models.DateTimeField()
-    pickup_date = models.DateTimeField()
+    order_date = datetime.now()
+    pickup_date = models.DateTimeField(blank=True, null=True)
     distance = models.IntegerField()
     fee = models.DecimalField(max_digits=30, decimal_places=2)
     status = models.CharField(max_length=8, choices=OrderStatus.choices, default=OrderStatus.PENDING)
@@ -25,3 +26,4 @@ class Order(models.Model):
 class DashboardDriver(models.Model):
     driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
     order = models.ManyToManyField(Order, blank=True)
+

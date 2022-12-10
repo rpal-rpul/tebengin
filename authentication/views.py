@@ -6,7 +6,7 @@ from dashboard_driver.models import DashboardDriver
 from .models import Driver, Customer
 from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def register(request):
     formulir = ChoiceRoleForm()
     argument = {
@@ -15,9 +15,9 @@ def register(request):
         'roleDriver': False,
         'roleCustomer': False
     }
-    return render(request, 'authentication/register.html', argument)
+    return render(request, 'authentication/registerRole.html', argument)
 
-
+@csrf_exempt
 def registerPenggunaRole(request, message="", role=None):
     try:
         Role = str(request.POST['Role'])
@@ -28,10 +28,10 @@ def registerPenggunaRole(request, message="", role=None):
     roleCustomer = False
     formulir = None
     if (Role == "Driver"):
-        formulir = DriverRoleForm(data=request.POST, files=request.FILES)
+        formulir = DriverRoleForm(data=request.POST)
         roleDriver = True
     elif (Role == "Customer"):
-        formulir = CustomerRoleForm(data=request.POST, files=request.FILES)
+        formulir = CustomerRoleForm(data=request.POST)
         roleCustomer = True
 
     argument = {
@@ -43,37 +43,39 @@ def registerPenggunaRole(request, message="", role=None):
     }
     return render(request, 'authentication/register.html', argument)
 
-
+@csrf_exempt
 def register_driver(request):
-    form = DriverRoleForm(request.POST, request.FILES)
+    form = DriverRoleForm(request.POST)
     if form.is_valid():
         form.save()
 
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
-            images = request.FILES['images']
+            # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            driver = Driver.objects.create(user=user, email=email, images=images)
+            driver = Driver.objects.create(user=user, email=email)
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
+    return render(request, 'authentication/register.html', {'form': form})
 
-
+@csrf_exempt
 def register_customer(request):
-    form = CustomerRoleForm(request.POST, request.FILES)
+    form = CustomerRoleForm(request.POST)
     if form.is_valid():
         form.save()
 
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
-            images = request.FILES['images']
+            # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            Customer.objects.create(user=user, email=email, images=images)
+            Customer.objects.create(user=user, email=email)
 
             return redirect('/authentication/login/')
+    return render(request, 'authentication/register.html', {'form': form})
 
 
 @csrf_exempt
@@ -86,13 +88,12 @@ def sign_in(request):
 
         if user is not None:
             login(request, user)
-            # redirect ke home
             return redirect('/')
-
+        else:
+            return render(request, 'authentication/login.html', {'message': 'Wrong username or password'})
     return render(request, 'authentication/login.html')
 
 @csrf_exempt
 def logout_user(request):
-    if request.user.is_authenticated:
-        logout(request)
+    logout(request)
     return redirect('/')
