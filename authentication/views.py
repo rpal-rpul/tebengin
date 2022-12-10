@@ -28,10 +28,10 @@ def registerPenggunaRole(request, message="", role=None):
     roleCustomer = False
     formulir = None
     if (Role == "Driver"):
-        formulir = DriverRoleForm(data=request.POST, files=request.FILES)
+        formulir = DriverRoleForm(data=request.POST)
         roleDriver = True
     elif (Role == "Customer"):
-        formulir = CustomerRoleForm(data=request.POST, files=request.FILES)
+        formulir = CustomerRoleForm(data=request.POST)
         roleCustomer = True
 
     argument = {
@@ -45,34 +45,34 @@ def registerPenggunaRole(request, message="", role=None):
 
 @csrf_exempt
 def register_driver(request):
-    form = DriverRoleForm(request.POST, request.FILES)
+    form = DriverRoleForm(request.POST)
     if form.is_valid():
         form.save()
 
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
-            images = request.FILES['images']
+            # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            driver = Driver.objects.create(user=user, email=email, images=images)
+            driver = Driver.objects.create(user=user, email=email)
             DashboardDriver.objects.create(driver=driver)
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
 
 @csrf_exempt
 def register_customer(request):
-    form = CustomerRoleForm(request.POST, request.FILES)
+    form = CustomerRoleForm(request.POST)
     if form.is_valid():
         form.save()
 
         if request.method == "POST":
             username = request.POST['username']
             email = request.POST['email']
-            images = request.FILES['images']
+            # images = request.FILES['images']
 
             user = User.objects.get(username=username)
-            Customer.objects.create(user=user, email=email, images=images)
+            Customer.objects.create(user=user, email=email)
 
             return redirect('/authentication/login/')
     return render(request, 'authentication/register.html', {'form': form})
