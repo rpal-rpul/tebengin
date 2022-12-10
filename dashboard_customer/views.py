@@ -6,6 +6,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from dashboard_driver.models import OrderStatus
+
 from authentication.models import Pengguna
 from django.core import serializers
 import json
@@ -33,6 +34,7 @@ def add_review(request):
         return JsonResponse({"success":"Success to add review"}, status=200)
 
     return JsonResponse({"failed": "Not using right method"}, status=405)
+
         
 @csrf_exempt
 def get_review(request):
@@ -44,6 +46,7 @@ def get_review(request):
 def get_review_driver(request):
     if request.method == 'GET':
         driver_login = User.objects.get(pk=request.user.id)
+
         all_review = Review.objects.all()
         print(request.user.id)
         print(all_review)

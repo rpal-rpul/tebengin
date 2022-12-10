@@ -1,9 +1,10 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block meta %}
-<link rel="stylesheet" href="{% static 'authentication/css/login.css' %}"/>
-<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/registerUser.css' %}" />
+{% extends "base.html" %} {% load static %} {% block meta %}
+<link rel="stylesheet" href="{% static 'authentication/css/login.css' %}" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'authentication/css/registerUser.css' %}"
+/>
 <script src="{% static 'authentication/js/signup' %}"></script>
 {% endblock meta %}
 
@@ -14,65 +15,73 @@
   <div class="container">
     <div class="login-form">
       <div class="left-content">
-        <img 
+        <img
           src="{% static 'assets/images/logo/favicon.svg' %}"
-          class="doctor-img" 
-          alt="login image"/>
+          class="doctor-img"
+          alt="login image"
+        />
         <p class="quote">
           "Mau Nebeng"
-          <br>
+          <br />
           -
-          <br> 
+          <br />
           "Mau Tebengin"
         </p>
       </div>
       <div class="right-content">
-        <form method="POST" class="form-signup" action="{% url 'authentication:login' %}">
-        {% csrf_token %}
-        <h2>Login here!</h2>
-        <div class="flexing">
-          {% if message != None %}
+        <form
+          method="POST"
+          class="form-signup"
+          action="{% url 'authentication:login' %}"
+        >
+          {% csrf_token %}
+          <h2>Login here!</h2>
+          <div class="flexing">
+            {% if message != None %}
             <div class="alert alert-danger text-center" role="alert">
               {{ message }}
             </div>
-          {% endif %}
-          <div class="form-left">
-            <br>
-            <div class="user-box">
-              <input 
-              type="text"
-              class="form-control" 
-              id= "username"
-              name="username"
-              value=""
-              required>
-              <label for="username">Username</label>
+            {% endif %}
+            <div class="form-left">
+              <br />
+              <div class="user-box">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  value=""
+                  required
+                />
+                <label for="username">Username</label>
+              </div>
+              <br />
+              <div class="user-box">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  name="password"
+                  value=""
+                  required
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
             </div>
-          <br>
-          <div class="user-box">
-            <input 
-            type="password" 
-            class="form-control" 
-            id="floatingPassword" 
-            name="password"
-            value=""
-            required>
-            <label for="floatingPassword">Password</label>
           </div>
-        </div>
-        </div>
-        <div class="d-grid">
-          <input 
-            class="btn btn-primary" 
-            type="submit"
-            value="Login" 
-            style="background-color: #9f7aea">
-          <p style="font-size: 1rem; margin-top: .5rem;">
-            Don't have an account?
-            <a href="{% url 'authentication:register' %}">Register here</a>
-          </p>
-        </div>
-      </form>      
+          <div class="d-grid">
+            <input
+              class="btn btn-primary"
+              type="submit"
+              value="Login"
+              style="background-color: #9f7aea"
+            />
+            <p style="font-size: 1rem; margin-top: 0.5rem">
+              Don't have an account?
+              <a href="{% url 'authentication:register' %}">Register here</a>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>

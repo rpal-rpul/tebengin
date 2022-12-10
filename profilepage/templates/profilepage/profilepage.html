@@ -77,18 +77,24 @@
           </div>
           <div class="row mb-2">
             <div class="col-4"> Username </div>
+            {% if profile.user != '' %}
             <div class="col-8"> {{ profile.user }} </div>
+            {% endif %}
           </div>
           {% if isdriver %}
           <div class="row mb-2">
             <div class="col-4"> Role </div>
             <div class="col-8"> Driver </div>
           </div>
-          {% else %}
+          {% elif iscustomer %}
           <div class="row mb-2">
             <div class="col-4"> Role </div>
             <div class="col-8"> Customer </div>
           </div>
+          {% else %}
+          <div class="row mb-2">
+            <div class="col-4"> Role </div>
+            <div class="col-8"> Admin </div>
           {% endif %}
         </div>
       </div>

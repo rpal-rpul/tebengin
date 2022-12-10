@@ -1,5 +1,4 @@
 """tebengin URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
@@ -30,10 +29,10 @@ urlpatterns = [
     path('authentication/', include(authentication)),
     path('dashboard-customer/', include(dashboard_customer)),
     path('dashboard-driver/', include(dashboard_driver)),
+    # path('dashboard-customer/', include(dashboard_customer)),
     path('respons-order/', include(respons_order)),
     path('booking-driver/', include(booking_driver)),
     path('profile/', include(profilepage)),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

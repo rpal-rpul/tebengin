@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'main',
     'dashboard_customer',
     'dashboard_driver',
-    'booking_driver'
+    'booking_driver',
 ]
 
 MIDDLEWARE = [
