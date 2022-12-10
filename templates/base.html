@@ -109,10 +109,11 @@
                 class="sidebar-link"
                 href="{% url 'dashboard_driver:addAvailableTime' %}"
               >
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-plus-circle-fill"></i>
                 <span>Add Available Time</span>
               </a>
             </li>
+
             <li class="sidebar-item has-sub">
               <a class="sidebar-link" href="#">
                 <i class="bi bi-stack"></i>
@@ -120,32 +121,45 @@
               </a>
               <ul class="submenu">
                 <li class="submenu-item">
-                  <a href="component-alert.html">Pending</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=pending"
+                    >Pending</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-badge.html">Accepted</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=accepted"
+                    >Accepted</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Rejected</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=rejected"
+                    >Rejected</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Finished</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=finished"
+                    >Finished</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Review</a>
+                  <a href="">Review</a>
                 </li>
               </ul>
             </li>
-            {% endif %} {% if request.user.is_authenticated and not is_driver%}
+            {% endif %} {% if request.user.is_authenticated and not is_driver %}
             <li class="sidebar-item">
               <a
                 class="sidebar-link"
                 href="{% url 'booking_driver:show_all_driver' %}"
               >
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-plus-circle-fill"></i>
                 <span>Booking Driver</span>
               </a>
             </li>
+
             <li class="sidebar-item has-sub">
               <a class="sidebar-link" href="#">
                 <i class="bi bi-stack"></i>
@@ -153,23 +167,34 @@
               </a>
               <ul class="submenu">
                 <li class="submenu-item">
-                  <a href="component-alert.html">Pending</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=pending"
+                    >Pending</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-badge.html">Accepted</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=accepted"
+                    >Accepted</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Rejected</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=rejected"
+                    >Rejected</a
+                  >
                 </li>
                 <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Finished</a>
+                  <a
+                    href="{% url 'dashboard_driver:getDriverOrder' %}?status=finished"
+                    >Finished</a
+                  >
                 </li>
-                <li class="submenu-item">
-                  <a href="component-breadcrumb.html">Review</a>
-                </li>
+                <!-- <li class="submenu-item">
+                  <a href="">Review</a>
+                </li> -->
               </ul>
             </li>
-
             {% endif %} {% if not request.user.is_authenticated %}
             <li class="sidebar-item">
               <a
@@ -210,11 +235,12 @@
             id="topbarUserDropdown"
           >
             <div class="avatar avatar-md2">
-              {% if profile.images %}
+              {% comment %} {% if profile.images %}
               <img src="{{profile.images.url}}" alt="Avatar" />
               {% else %}
               <img src="{% static 'base/image/default.png' %}" alt="Avatar" />
-              {% endif %}
+              {% endif %} {% endcomment %}
+              <img alt="Avatar" src="{% static 'base/image/default.png' %}" />
             </div>
             <div class="text">
               <h6 class="user-dropdown-name">{{ request.user }}</h6>

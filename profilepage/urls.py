@@ -7,4 +7,5 @@ urlpatterns = [
     path('', profile, name="profile-page"),
     path('change-password/', change_password, name="password-change"),
     path('edit-data/', update_data, name="edit-data")
+    
 ]

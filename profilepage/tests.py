@@ -26,5 +26,3 @@ class ProfilePageTest(TestCase):
         self.client.logout()
         self.assertEqual(response.status_code, 404)
         
-
-# Create your tests here.
